@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf8f6">
+  <title>Leave Management Demo | KARA</title>
+  <style>
+    :root { color-scheme:light; --ink:#261820; --muted:#80747a; --line:#eee5e3; --paper:#fbf8f6; --burgundy:#730223; --burgundy-dark:#560019; --gold:#efa92d; --gold-soft:#fff3dc; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:14px/1.5 "Segoe UI",Arial,sans-serif; }
+    button,input,select,textarea { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    .layout { min-height:100vh; }
+    .brand { display:flex; align-items:center; }
+    .brand img { display:block; width:160px; height:66px; object-fit:contain; }
+    main { width:min(1220px,100%); min-width:0; margin:auto; padding:24px clamp(16px,4vw,48px) 48px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:34px; }
+    .button { min-height:40px; padding:0 15px; border:0; border-radius:8px; background:var(--burgundy); color:#fff; font-weight:700; cursor:pointer; }
+    .button:hover { filter:brightness(.94); }
+    .button.secondary { border:1px solid #e8cfaa; background:white; color:var(--burgundy); }
+    .heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; }
+    h1 { margin:0; font-size:clamp(27px,3vw,36px); letter-spacing:-.045em; }
+    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:24px; }
+    .metric { padding:17px 19px; border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:12px; background:#fff; box-shadow:0 6px 20px #3a17200d; }
+    .metric > span { display:block; color:var(--muted); font-size:11px; }
+    .metric strong { display:block; margin-top:7px; font-size:27px; letter-spacing:-.04em; }
+    .panel { overflow:hidden; border:1px solid var(--line); border-radius:13px; background:#fff; box-shadow:0 7px 24px #3a17200b; }
+    .panel-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; padding:18px 20px; }
+    .panel-head h2 { margin:0; font-size:17px; }
+    .controls { display:flex; flex-wrap:wrap; gap:8px; }
+    .controls input,.controls select,.field input,.field select,.field textarea { min-height:38px; padding:8px 11px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); }
+    .table-wrap { overflow:auto; }
+    table { width:100%; min-width:700px; border-collapse:collapse; text-align:left; }
+    th { padding:12px 17px; background:#fbf5eb; color:#80747a; font-size:9px; letter-spacing:.06em; text-transform:uppercase; }
+    td { padding:13px 17px; border-top:1px solid var(--line); font-size:12px; }
+    tbody tr:hover { background:#fdfaf7; }
+    .person-cell { display:flex; align-items:center; gap:10px; }
+    .avatar { position:relative; display:grid; width:38px; height:38px; flex:none; place-items:center; overflow:hidden; border-radius:50%; background:var(--gold-soft); color:var(--burgundy); font-size:11px; font-weight:800; }
+    .avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .person { font-weight:700; }
+    .badge { display:inline-block; padding:5px 9px; border-radius:20px; background:var(--gold-soft); color:#85550b; font-size:10px; font-weight:700; white-space:nowrap; }
+    .badge.approved { background:#e3f2eb; color:#287650; }.badge.declined { background:#fbe7e7; color:#a54242; }
+    .row-actions { display:flex; gap:6px; }.row-action { padding:6px 9px; border:1px solid #eadbd7; border-radius:6px; background:#fff; color:var(--burgundy); font-size:10px; font-weight:700; cursor:pointer; }.row-action:disabled { opacity:.5; cursor:default; }
+    .empty { padding:32px; color:var(--muted); text-align:center; }
+    dialog { width:min(460px,calc(100% - 28px)); max-height:calc(100% - 28px); overflow:auto; padding:0; border:0; border-radius:14px; box-shadow:0 25px 80px #15271f44; }
+    dialog::backdrop { background:#2b101c77; backdrop-filter:blur(3px); }
+    .dialog-body { padding:24px; }.dialog-body h2 { margin:0 34px 16px 0; font-size:21px; }
+    .dialog-close { float:right; border:0; background:transparent; color:#80747a; font-size:24px; cursor:pointer; }
+    .form { display:grid; gap:13px; }.field { display:grid; gap:6px; }.field label { color:#62525a; font-size:11px; font-weight:700; }.field input,.field select,.field textarea { width:100%; }.field textarea { min-height:80px; resize:vertical; }
+    .toast { position:fixed; right:20px; bottom:20px; padding:12px 16px; border-radius:9px; background:var(--burgundy-dark); color:#fff; box-shadow:0 8px 22px #2b101c33; }
+    @media(max-width:760px) { main { padding:18px 14px 36px; }.topbar { margin-bottom:24px; }.metrics { gap:8px; }.metric { padding:13px 12px; }.metric strong { font-size:20px; } }
+    @media(max-width:450px) { .metrics { grid-template-columns:1fr; }.topbar { margin-bottom:20px; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <main>
+      <div class="topbar"><a class="brand" href="../index.html" aria-label="KARA home"><img src="../images/kara-wordmark-clean.png" alt="KARA logo"></a><button class="button secondary" id="resetDemo" type="button">Reset</button></div>
+      <section class="heading" aria-labelledby="pageTitle">
+        <h1 id="pageTitle">Time off</h1>
+        <button class="button" id="newRequest" type="button">＋ Request leave</button>
+      </section>
+      <section class="metrics" aria-label="Leave summary">
+        <article class="metric"><span>Pending</span><strong id="pendingCount">0</strong></article>
+        <article class="metric"><span>Approved</span><strong id="approvedCount">0</strong></article>
+        <article class="metric" id="balances"><span>My balance</span><strong><span id="balanceCount">18</span> days</strong></article>
+      </section>
+      <section class="panel" id="requests" aria-labelledby="requestListTitle">
+        <div class="panel-head"><h2 id="requestListTitle">Requests</h2>
+          <div class="controls"><select id="statusFilter" aria-label="Filter leave requests"><option value="all">All status</option><option>Pending</option><option>Approved</option><option>Declined</option></select><input id="search" type="search" placeholder="Search name" aria-label="Search requests"></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Team member</th><th>Dates</th><th>Type</th><th>Days</th><th>Status</th><th>Decision</th></tr></thead><tbody id="requestRows"></tbody></table></div>
+        <div id="emptyState" class="empty" hidden>No requests found.</div>
+      </section>
+    </main>
+  </div>
+  <dialog id="requestDialog"><div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><h2>New request</h2><form class="form" id="requestForm">
+    <div class="field"><label for="employee">Team member</label><input id="employee" name="employee" maxlength="60" required placeholder="e.g. Alex Kim"></div>
+    <div class="field"><label for="leaveType">Leave type</label><select id="leaveType" name="type"><option>Annual</option><option>Personal</option><option>Sick</option><option>Unpaid</option></select></div>
+    <div class="field"><label for="startDate">First day</label><input id="startDate" name="start" type="date" required></div>
+    <div class="field"><label for="endDate">Last day</label><input id="endDate" name="end" type="date" required></div>
+    <div class="field"><label for="reason">Note</label><textarea id="reason" name="reason" maxlength="250" placeholder="Optional"></textarea></div>
+    <button class="button" type="submit">Add request</button>
+  </form></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    const seedRequests = [
+      { id:"LV-2041", employee:"Jordan A.", photo:"photo-1500648767791-00dcc994a43e", start:"2026-11-04", end:"2026-11-06", type:"Annual", days:3, status:"Pending", reason:"Family visit" },
+      { id:"LV-2040", employee:"Morgan K.", photo:"photo-1534528741775-53994a69daeb", start:"2026-11-08", end:"2026-11-08", type:"Personal", days:1, status:"Approved", reason:"Personal appointment" },
+      { id:"LV-2039", employee:"Casey R.", photo:"photo-1506794778202-cad84cf45f1d", start:"2026-11-11", end:"2026-11-12", type:"Sick", days:2, status:"Pending", reason:"" },
+      { id:"LV-2038", employee:"Avery C.", photo:"photo-1524504388940-b1c1722653e1", start:"2026-11-18", end:"2026-11-20", type:"Annual", days:3, status:"Approved", reason:"" },
+      { id:"LV-2037", employee:"Riley M.", photo:"photo-1507003211169-0a1dd7228f2d", start:"2026-12-02", end:"2026-12-03", type:"Annual", days:2, status:"Declined", reason:"" }
+    ];
+    let requests = seedRequests.map(request => ({ ...request }));
+    const rows = document.getElementById("requestRows");
+    const statusFilter = document.getElementById("statusFilter");
+    const search = document.getElementById("search");
+    const dialog = document.getElementById("requestDialog");
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" })[character]);
+    const formatDate = date => new Intl.DateTimeFormat("en-KE", { day:"numeric", month:"short" }).format(new Date(`${date}T00:00:00`));
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const visible = requests.filter(request =>
+        (statusFilter.value === "all" || request.status === statusFilter.value) &&
+        `${request.employee} ${request.id} ${request.type}`.toLowerCase().includes(query)
+      );
+      rows.innerHTML = visible.map(request => `<tr><td><div class="person-cell"><span class="avatar">${escapeHtml(request.employee.slice(0, 1))}<img src="https://images.unsplash.com/${escapeHtml(request.photo || "photo-1534528741775-53994a69daeb")}?auto=format&amp;fit=crop&amp;w=96&amp;h=96&amp;q=80" alt="" loading="lazy"></span><span class="person">${escapeHtml(request.employee)}</span></div></td><td>${formatDate(request.start)} – ${formatDate(request.end)}</td><td>${escapeHtml(request.type)}</td><td>${request.days} ${request.days === 1 ? "day" : "days"}</td><td><span class="badge ${request.status.toLowerCase()}">${escapeHtml(request.status)}</span></td><td><div class="row-actions"><button class="row-action" type="button" data-decision="Approved" data-id="${escapeHtml(request.id)}"${request.status !== "Pending" ? " disabled" : ""}>Approve</button><button class="row-action" type="button" data-decision="Declined" data-id="${escapeHtml(request.id)}"${request.status !== "Pending" ? " disabled" : ""}>Decline</button></div></td></tr>`).join("");
+      document.getElementById("emptyState").hidden = visible.length > 0;
+      document.getElementById("pendingCount").textContent = requests.filter(request => request.status === "Pending").length;
+      document.getElementById("approvedCount").textContent = requests.filter(request => request.status === "Approved").length;
+    }
+    function toast(message) {
+      const element = document.getElementById("toast");
+      element.textContent = message;
+      element.hidden = false;
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => { element.hidden = true; }, 2500);
+    }
+    rows.addEventListener("click", event => {
+      const button = event.target.closest("[data-decision]");
+      if (!button || button.disabled) return;
+      const request = requests.find(item => item.id === button.dataset.id);
+      if (!request || request.status !== "Pending") return;
+      request.status = button.dataset.decision;
+      render();
+      toast(`${request.id} ${request.status.toLowerCase()}.`);
+    });
+    rows.addEventListener("error", event => {
+      if (event.target instanceof HTMLImageElement) event.target.remove();
+    }, true);
+    statusFilter.addEventListener("change", render);
+    search.addEventListener("input", render);
+    document.getElementById("newRequest").addEventListener("click", () => dialog.showModal());
+    document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+    document.getElementById("requestForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const values = new FormData(event.currentTarget);
+      const start = values.get("start").toString();
+      const end = values.get("end").toString();
+      const startTime = new Date(`${start}T00:00:00`).getTime();
+      const endTime = new Date(`${end}T00:00:00`).getTime();
+      if (endTime < startTime) {
+        document.getElementById("endDate").setCustomValidity("The last day must be on or after the first day.");
+        document.getElementById("endDate").reportValidity();
+        document.getElementById("endDate").setCustomValidity("");
+        return;
+      }
+      const days = Math.round((endTime - startTime) / 86400000) + 1;
+      const nextId = Math.max(2041, ...requests.map(request => Number(request.id.slice(3)))) + 1;
+      requests.unshift({ id:`LV-${nextId}`, employee:values.get("employee").toString().trim(), start, end, type:values.get("type").toString(), days, status:"Pending", reason:values.get("reason").toString().trim() });
+      dialog.close();
+      event.currentTarget.reset();
+      statusFilter.value = "all";
+      search.value = "";
+      render();
+      toast("Sample leave request added.");
+    });
+    document.getElementById("resetDemo").addEventListener("click", () => { requests = seedRequests.map(request => ({ ...request })); statusFilter.value = "all"; search.value = ""; render(); toast("Demo requests reset."); });
+    render();
+  </script>
+</body>
+</html>

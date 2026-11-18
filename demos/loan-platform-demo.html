@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>Loan Origination Demo | KARA</title>
+  <style>
+    :root { color-scheme: light; --ink:#1d2b3c; --muted:#758396; --line:#e4eaf1; --paper:#f2f6fb; --nav:#203b4b; --teal:#138c79; --purple:#7651d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:14px/1.5 "Segoe UI",Arial,sans-serif; }
+    button,input,select { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    .demo-banner { padding:9px 18px; background:#fff3d8; color:#684917; text-align:center; font-size:12px; }
+    .layout { display:grid; min-height:calc(100vh - 40px); grid-template-columns:220px minmax(0,1fr); }
+    aside { display:flex; flex-direction:column; padding:24px 15px; background:var(--nav); color:#e7f0f5; }
+    .brand { display:flex; gap:10px; align-items:center; padding:0 6px 26px; font-size:15px; font-weight:800; letter-spacing:.06em; }
+    .brand-mark { display:grid; width:34px; height:34px; place-items:center; border-radius:10px; background:var(--purple); color:white; }
+    .nav-label { margin:0 8px 10px; color:#9fb3be; font-size:10px; font-weight:700; letter-spacing:.12em; }
+    .nav-link { margin:2px 0; padding:11px 10px; border-radius:8px; color:#d5e0e6; font-size:13px; }
+    .nav-link.active,.nav-link:hover { background:#ffffff19; color:#fff; }
+    .side-note { margin-top:auto; padding:14px 9px 0; border-top:1px solid #ffffff24; color:#b9c9d0; font-size:11px; }
+    main { min-width:0; padding:24px clamp(18px,4vw,48px) 48px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:30px; color:var(--muted); font-size:12px; }
+    .topbar a { color:#43566d; font-weight:700; }
+    .top-actions { display:flex; gap:9px; }
+    .button { min-height:40px; padding:0 15px; border:0; border-radius:8px; background:var(--teal); color:#fff; font-weight:700; cursor:pointer; }
+    .button:hover { filter:brightness(.94); }
+    .button.secondary { border:1px solid var(--line); background:white; color:#34445a; }
+    .heading { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px; }
+    .eyebrow { color:var(--teal); font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { margin:6px 0 4px; font-size:clamp(24px,3vw,34px); letter-spacing:-.04em; }
+    .subheading { margin:0; color:var(--muted); }
+    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:25px; }
+    .metric { padding:17px 19px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 6px 20px #1a2e4610; }
+    .metric span { display:block; color:var(--muted); font-size:11px; }
+    .metric strong { display:block; margin-top:7px; font-size:25px; letter-spacing:-.04em; }
+    .metric small { color:#8090a2; font-size:10px; }
+    .panel { overflow:hidden; border:1px solid var(--line); border-radius:13px; background:#fff; box-shadow:0 7px 24px #1a2e460b; }
+    .panel-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; padding:18px 20px; }
+    .panel-head h2 { margin:0; font-size:17px; }
+    .controls { display:flex; flex-wrap:wrap; gap:8px; }
+    .controls input,.controls select,.field input,.field select { min-height:38px; padding:0 11px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); }
+    .table-wrap { overflow:auto; }
+    table { width:100%; min-width:720px; border-collapse:collapse; text-align:left; }
+    th { padding:12px 18px; background:#f4f8f4; color:#718296; font-size:9px; letter-spacing:.06em; text-transform:uppercase; }
+    td { padding:13px 18px; border-top:1px solid var(--line); font-size:12px; }
+    tbody tr:hover { background:#f9fbfd; }
+    .customer { font-weight:700; }
+    .application-id { display:block; color:#8a97a6; font-size:10px; }
+    .status { display:inline-block; padding:5px 9px; border-radius:20px; background:#fff2d8; color:#986a1a; font-size:10px; font-weight:700; }
+    .status.in-review { background:#e9e2ff; color:#5f46b4; }
+    .status.approved { background:#e4f4eb; color:#257a50; }
+    .status.disbursed { background:#e3f2f0; color:#167568; }
+    .status.declined { background:#fbe7e7; color:#a54242; }
+    .row-action { padding:6px 10px; border:1px solid #dfe5ec; border-radius:6px; background:#fff; color:#42536a; font-size:10px; font-weight:700; cursor:pointer; }
+    .empty { padding:32px; color:var(--muted); text-align:center; }
+    dialog { width:min(460px,calc(100% - 28px)); padding:0; border:0; border-radius:14px; box-shadow:0 25px 80px #15273b44; }
+    dialog::backdrop { background:#15273b77; backdrop-filter:blur(3px); }
+    .dialog-body { padding:24px; }
+    .dialog-body h2 { margin:0 34px 16px 0; font-size:21px; }
+    .dialog-close { float:right; border:0; background:transparent; color:#667487; font-size:24px; cursor:pointer; }
+    .details-list { display:grid; gap:11px; margin:0 0 20px; }
+    .details-list div { display:flex; justify-content:space-between; gap:12px; padding-bottom:9px; border-bottom:1px solid var(--line); }
+    .details-list dt { color:var(--muted); }
+    .details-list dd { margin:0; font-weight:700; text-align:right; }
+    .form { display:grid; gap:13px; }
+    .field { display:grid; gap:6px; }
+    .field label { color:#536276; font-size:11px; font-weight:700; }
+    .field input,.field select { width:100%; }
+    .form-note { margin:12px 0 0; color:var(--muted); font-size:11px; }
+    .toast { position:fixed; right:20px; bottom:20px; padding:12px 16px; border-radius:9px; background:#203b4b; color:#fff; box-shadow:0 8px 22px #12243433; }
+    @media(max-width:760px) {
+      .layout { grid-template-columns:1fr; }
+      aside { padding:13px 16px; }
+      .brand { padding:0 4px 12px; }
+      .nav-label,.side-note { display:none; }
+      .nav-list { display:flex; gap:4px; overflow:auto; }
+      .nav-link { flex:0 0 auto; padding:8px 10px; font-size:11px; }
+      main { padding:18px 14px 36px; }
+      .topbar { margin-bottom:22px; }
+      .metrics { gap:8px; }
+      .metric { padding:13px 12px; }
+      .metric strong { font-size:20px; }
+    }
+    @media(max-width:450px) { .metrics { grid-template-columns:1fr; } .topbar { align-items:flex-start; flex-direction:column; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">INTERACTIVE CONCEPT DEMO · Sample data only · No real applications are submitted or saved</div>
+  <div class="layout">
+    <aside>
+      <a class="brand" href="../index.html"><span class="brand-mark">K</span>KARA WORKSPACE</a>
+      <div class="nav-label">LOAN OFFICER WORKSPACE</div>
+      <nav class="nav-list" aria-label="Demo navigation">
+        <a class="nav-link active" href="#applications">My applications</a>
+        <a class="nav-link" href="#applications" id="newApplicationNav">New application</a>
+      </nav>
+      <p class="side-note">Demo workspace<br>Records reset when this page is refreshed.</p>
+    </aside>
+    <main>
+      <div class="topbar"><a href="../index.html">← Back to KARA</a><div class="top-actions"><button class="button secondary" id="resetDemo" type="button">Reset demo</button></div></div>
+      <section class="heading" aria-labelledby="pageTitle">
+        <div><span class="eyebrow">Loan officer workspace</span><h1 id="pageTitle">My applications</h1><p class="subheading">Track each application from intake through decision.</p></div>
+        <button class="button" id="newApplication" type="button">＋ New application</button>
+      </section>
+      <section class="metrics" aria-label="Application summary">
+        <article class="metric"><span>Your applications</span><strong id="totalCount">0</strong><small>In this demo workspace</small></article>
+        <article class="metric"><span>In progress</span><strong id="progressCount">0</strong><small>Awaiting a decision</small></article>
+        <article class="metric"><span>Total requested</span><strong id="requestedTotal">KES 0</strong><small>Across sample applications</small></article>
+      </section>
+      <section class="panel" id="applications" aria-labelledby="listTitle">
+        <div class="panel-head"><div><h2 id="listTitle">Applications</h2><span class="subheading">Select an application to review its details.</span></div>
+          <div class="controls"><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option>Received</option><option>In review</option><option>Approved</option><option>Disbursed</option><option>Declined</option></select><input id="search" type="search" placeholder="Search customer or ID" aria-label="Search applications"></div>
+        </div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Customer / application</th><th>Loan amount</th><th>Purpose</th><th>Status</th><th>Action</th></tr></thead><tbody id="applicationRows"></tbody></table>
+        </div>
+        <div id="emptyState" class="empty" hidden>No matching applications. Adjust your search or add a new application.</div>
+      </section>
+    </main>
+  </div>
+  <dialog id="applicationDialog">
+    <div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><h2 id="dialogTitle"></h2><div id="dialogContent"></div></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    const initialApplications = [
+      { id:"LN-24081", name:"Avery Chen", amount:28500, purpose:"Equipment", status:"Received" },
+      { id:"LN-24080", name:"Jordan Reed", amount:12000, purpose:"Working capital", status:"Received" },
+      { id:"LN-24079", name:"Priya Nair", amount:46000, purpose:"Vehicle", status:"In review" },
+      { id:"LN-24078", name:"Taylor Okafor", amount:18500, purpose:"Renovation", status:"Approved" },
+      { id:"LN-24077", name:"Morgan Silva", amount:8200, purpose:"Education", status:"Disbursed" },
+      { id:"LN-24076", name:"Casey Williams", amount:32000, purpose:"Debt consolidation", status:"Declined" }
+    ];
+    let applications = initialApplications.map(application => ({ ...application }));
+    const rows = document.getElementById("applicationRows");
+    const filter = document.getElementById("statusFilter");
+    const search = document.getElementById("search");
+    const dialog = document.getElementById("applicationDialog");
+    const money = amount => `KES ${new Intl.NumberFormat("en-KE").format(amount)}`;
+    const statusClass = status => status.toLowerCase().replaceAll(" ", "-");
+    const escapeHtml = value => value.replace(/[&<>"']/g, character => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" })[character]);
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const selectedStatus = filter.value;
+      const visible = applications.filter(application => (selectedStatus === "all" || application.status === selectedStatus) && `${application.name} ${application.id} ${application.purpose}`.toLowerCase().includes(query));
+      rows.innerHTML = visible.map(application => `<tr><td><span class="customer">${escapeHtml(application.name)}</span><span class="application-id">${escapeHtml(application.id)}</span></td><td>${money(application.amount)}</td><td>${escapeHtml(application.purpose)}</td><td><span class="status ${statusClass(application.status)}">${escapeHtml(application.status)}</span></td><td><button class="row-action" type="button" data-open="${escapeHtml(application.id)}">Review</button></td></tr>`).join("");
+      document.getElementById("emptyState").hidden = visible.length > 0;
+      document.getElementById("totalCount").textContent = applications.length;
+      document.getElementById("progressCount").textContent = applications.filter(item => ["Received", "In review", "Approved"].includes(item.status)).length;
+      document.getElementById("requestedTotal").textContent = money(applications.reduce((sum, item) => sum + item.amount, 0));
+    }
+    function openDetails(id) {
+      const application = applications.find(item => item.id === id);
+      if (!application) return;
+      document.getElementById("dialogTitle").textContent = `Application ${application.id}`;
+      const content = document.getElementById("dialogContent");
+      const nextAction = application.status === "Received" ? `<button class="button" type="button" id="moveToReview">Move to review</button>` : "";
+      content.innerHTML = `<dl class="details-list"><div><dt>Customer</dt><dd>${escapeHtml(application.name)}</dd></div><div><dt>Requested</dt><dd>${money(application.amount)}</dd></div><div><dt>Purpose</dt><dd>${escapeHtml(application.purpose)}</dd></div><div><dt>Status</dt><dd>${escapeHtml(application.status)}</dd></div><div><dt>Documents</dt><dd>Identity ✓ &nbsp; Income ✓</dd></div></dl>${nextAction}<p class="form-note">All information is fictional and only held in this browser demo.</p>`;
+      const moveButton = document.getElementById("moveToReview");
+      if (moveButton) moveButton.addEventListener("click", () => { application.status = "In review"; dialog.close(); render(); showToast(`${application.id} moved to review.`); });
+      dialog.showModal();
+    }
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.hidden = false;
+      window.clearTimeout(showToast.timeout);
+      showToast.timeout = window.setTimeout(() => { toast.hidden = true; }, 2800);
+    }
+    rows.addEventListener("click", event => {
+      const button = event.target.closest("[data-open]");
+      if (button) openDetails(button.dataset.open);
+    });
+    filter.addEventListener("change", render);
+    search.addEventListener("input", render);
+    document.getElementById("newApplication").addEventListener("click", openNewApplication);
+    document.getElementById("newApplicationNav").addEventListener("click", event => { event.preventDefault(); openNewApplication(); });
+    document.getElementById("resetDemo").addEventListener("click", () => { applications = initialApplications.map(application => ({ ...application })); filter.value = "all"; search.value = ""; render(); showToast("Demo data reset."); });
+    document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+    function openNewApplication() {
+      document.getElementById("dialogTitle").textContent = "Create sample application";
+      document.getElementById("dialogContent").innerHTML = `<form class="form" id="newApplicationForm"><div class="field"><label for="customerName">Customer name</label><input id="customerName" name="customerName" required placeholder="e.g. Alex Kim"></div><div class="field"><label for="loanAmount">Requested amount (KES)</label><input id="loanAmount" name="loanAmount" type="number" min="1" required placeholder="25000"></div><div class="field"><label for="loanPurpose">Loan purpose</label><select id="loanPurpose" name="loanPurpose"><option>Working capital</option><option>Equipment</option><option>Vehicle</option><option>Education</option><option>Other</option></select></div><button class="button" type="submit">Add sample application</button></form><p class="form-note">This only creates a temporary sample record in this page.</p>`;
+      document.getElementById("newApplicationForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const nextNumber = Math.max(24081, ...applications.map(item => Number(item.id.slice(3)))) + 1;
+        applications.unshift({ id:`LN-${nextNumber}`, name:formData.get("customerName").toString().trim(), amount:Number(formData.get("loanAmount")), purpose:formData.get("loanPurpose").toString(), status:"Received" });
+        dialog.close(); filter.value = "all"; search.value = ""; render(); showToast("Sample application added.");
+      });
+      dialog.showModal();
+    }
+    render();
+  </script>
+</body>
+</html>

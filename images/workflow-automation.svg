@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">Automated business workflow concept</title>
+  <desc id="desc">A connected process that collects a request, updates a team, and keeps records current.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff2d8"/><stop offset="1" stop-color="#f4e5e9"/></linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#fffaf4"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#32101c" flood-opacity=".14"/></filter>
+  </defs>
+  <rect width="1200" height="850" rx="44" fill="url(#bg)"/>
+  <circle cx="1030" cy="140" r="180" fill="#efa92d" opacity=".1"/><circle cx="176" cy="732" r="190" fill="#730223" opacity=".055"/>
+  <text x="100" y="110" fill="#730223" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3">FROM MANUAL STEPS TO MOMENTUM</text>
+  <text x="100" y="161" fill="#301923" font-family="Arial,sans-serif" font-size="28" font-weight="700">One action sets the next in motion.</text>
+  <path d="M273 374H423M570 374H700M850 374H938M1000 433V544M938 603H818M670 603H536M385 603H273" fill="none" stroke="#c89a5c" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 13"/>
+  <g fill="#efa92d"><circle cx="348" cy="374" r="7"/><circle cx="635" cy="374" r="7"/><circle cx="893" cy="374" r="7"/><circle cx="879" cy="603" r="7"/><circle cx="612" cy="603" r="7"/></g>
+  <g filter="url(#shadow)">
+    <rect x="91" y="282" width="224" height="184" rx="20" fill="url(#node)"/><rect x="397" y="282" width="224" height="184" rx="20" fill="url(#node)"/><rect x="684" y="282" width="224" height="184" rx="20" fill="url(#node)"/><rect x="888" y="513" width="224" height="184" rx="20" fill="url(#node)"/><rect x="646" y="513" width="224" height="184" rx="20" fill="url(#node)"/><rect x="362" y="513" width="224" height="184" rx="20" fill="url(#node)"/><rect x="91" y="513" width="224" height="184" rx="20" fill="#730223"/>
+  </g>
+  <g fill="none" stroke="#e9e0db" stroke-width="2"><rect x="119" y="311" width="53" height="53" rx="15"/><rect x="425" y="311" width="53" height="53" rx="15"/><rect x="712" y="311" width="53" height="53" rx="15"/><rect x="916" y="542" width="53" height="53" rx="15"/><rect x="674" y="542" width="53" height="53" rx="15"/><rect x="390" y="542" width="53" height="53" rx="15"/><rect x="119" y="542" width="53" height="53" rx="15" stroke="#ffffff55"/></g>
+  <g fill="none" stroke="#730223" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M135 325h18v23h-18zM140 332h9m-9 5h9"/><path d="M441 326h21v22h-21zM446 332h11m-11 5h11m-11 5h7"/><path d="M727 324h23v23h-23zM731 337l5 5 10-12"/><path d="M931 557h21v16h-21zM931 562h21M936 553v8m11-8v8"/><path d="M688 556h20m-10-10v20m-8-18 17 17"/><path d="M404 556h22v18h-22zM409 551v9m12-9v9m-17 1h22"/></g>
+  <g font-family="Arial,sans-serif"><text x="119" y="397" fill="#2d2023" font-size="14" font-weight="700">Request received</text><text x="119" y="422" fill="#8a7a78" font-size="11">One simple digital form</text>
+  <text x="425" y="397" fill="#2d2023" font-size="14" font-weight="700">Details checked</text><text x="425" y="422" fill="#8a7a78" font-size="11">No retyping needed</text>
+  <text x="712" y="397" fill="#2d2023" font-size="14" font-weight="700">Team notified</text><text x="712" y="422" fill="#8a7a78" font-size="11">Right people, right away</text>
+  <text x="916" y="628" fill="#2d2023" font-size="14" font-weight="700">Work moves forward</text><text x="916" y="653" fill="#8a7a78" font-size="11">No follow-up chase</text>
+  <text x="674" y="628" fill="#2d2023" font-size="14" font-weight="700">Records stay current</text><text x="674" y="653" fill="#8a7a78" font-size="11">One shared source of truth</text>
+  <text x="390" y="628" fill="#2d2023" font-size="14" font-weight="700">Progress is visible</text><text x="390" y="653" fill="#8a7a78" font-size="11">Everyone knows what’s next</text>
+  <text x="119" y="628" fill="#fff" font-size="14" font-weight="700">More time for people</text><text x="119" y="653" fill="#f4dfe3" font-size="11">Less busywork, every day</text></g>
+  <circle cx="1000" cy="374" r="28" fill="#fff3dc" stroke="#efa92d" stroke-width="3"/><path d="M988 374h24m-12-12 12 12-12 12" fill="none" stroke="#730223" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

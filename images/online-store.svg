@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">Online shop and mobile checkout concept</title>
+  <desc id="desc">A polished product storefront with an overlapping mobile checkout screen and warm product photography-inspired shapes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff2d6"/><stop offset="1" stop-color="#f5e2e8"/></linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efbd70"/><stop offset=".55" stop-color="#bf7658"/><stop offset="1" stop-color="#731e39"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#36101f" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="1200" height="850" rx="44" fill="url(#bg)"/>
+  <rect x="76" y="92" width="875" height="652" rx="24" fill="#fffdfa" filter="url(#shadow)"/>
+  <path d="M100 92h827a24 24 0 0 1 24 24v28H76v-28a24 24 0 0 1 24-24Z" fill="#fff"/>
+  <circle cx="111" cy="116" r="6" fill="#e6b7b4"/><circle cx="133" cy="116" r="6" fill="#f1cf85"/><circle cx="155" cy="116" r="6" fill="#b9cbb9"/>
+  <rect x="392" y="106" width="310" height="19" rx="10" fill="#f4efeb"/>
+  <text x="111" y="191" fill="#730223" font-family="Georgia,serif" font-size="24" font-weight="700">NOUR</text>
+  <g fill="#73676a" font-family="Arial,sans-serif" font-size="12"><text x="530" y="187">New arrivals</text><text x="630" y="187">Collections</text><text x="734" y="187">Our story</text></g>
+  <circle cx="883" cy="182" r="19" fill="#fff3dc"/><path d="M875 178h17l-2 13h-13Zm3 0a5 5 0 0 1 10 0" fill="none" stroke="#730223" stroke-width="1.8" stroke-linejoin="round"/>
+  <rect x="105" y="217" width="813" height="274" rx="16" fill="url(#hero)"/>
+  <circle cx="727" cy="294" r="91" fill="#f7d68f" opacity=".84"/>
+  <path d="M105 417q130-122 257-27t228 10q145-121 328-4v95H105Z" fill="#86443b"/>
+  <path d="M105 451q140-75 287-23t231-22q150-83 295 8v77H105Z" fill="#542435"/>
+  <rect x="575" y="294" width="91" height="133" rx="12" fill="#e9c69a" transform="rotate(-12 575 294)"/>
+  <rect x="682" y="320" width="74" height="109" rx="11" fill="#f5e6ca" transform="rotate(10 682 320)"/>
+  <circle cx="620" cy="331" r="12" fill="#fff8ec"/>
+  <text x="148" y="290" fill="#fffdf9" font-family="Georgia,serif" font-size="42">A little more</text><text x="148" y="340" fill="#fffdf9" font-family="Georgia,serif" font-size="42" font-style="italic">lovely, daily.</text>
+  <text x="150" y="376" fill="#fff2df" font-family="Arial,sans-serif" font-size="14">Small things, thoughtfully chosen.</text>
+  <rect x="150" y="399" width="136" height="42" rx="21" fill="#fffdf9"/><text x="218" y="425" text-anchor="middle" fill="#730223" font-family="Arial,sans-serif" font-size="12" font-weight="700">Shop the edit</text>
+  <text x="109" y="533" fill="#291a20" font-family="Arial,sans-serif" font-size="17" font-weight="700">Made to keep</text>
+  <g><rect x="109" y="552" width="175" height="151" rx="12" fill="#f3e7d9"/><rect x="305" y="552" width="175" height="151" rx="12" fill="#f5e8e9"/><rect x="501" y="552" width="175" height="151" rx="12" fill="#f3ecdf"/><rect x="697" y="552" width="175" height="151" rx="12" fill="#efe6dc"/>
+  <rect x="154" y="572" width="83" height="89" rx="21" fill="#d09c70"/><path d="M171 587h49M171 602h49" stroke="#f6dfbd" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="393" cy="619" rx="39" ry="48" fill="#ae6b64"/><path d="M368 607h50m-49 14h48" stroke="#f4d7cf" stroke-width="4" stroke-linecap="round"/>
+  <path d="M548 601q41-41 82 0l-8 54h-66Z" fill="#c29151"/><path d="M570 580q18-20 37 0" fill="none" stroke="#7b4a32" stroke-width="7" stroke-linecap="round"/>
+  <rect x="747" y="578" width="74" height="78" rx="34" fill="#b98568"/><path d="M758 598h53m-51 14h48" stroke="#ebcfb0" stroke-width="4" stroke-linecap="round"/></g>
+  <g font-family="Arial,sans-serif" font-size="10" fill="#6f6061"><text x="111" y="690">The morning set</text><text x="307" y="690">Soft-touch cup</text><text x="503" y="690">Weekend tote</text><text x="699" y="690">Everyday bottle</text></g>
+  <g filter="url(#shadow)"><rect x="873" y="222" width="247" height="517" rx="36" fill="#2c1a21"/><rect x="883" y="233" width="227" height="494" rx="28" fill="#fffdfa"/><rect x="949" y="242" width="94" height="17" rx="9" fill="#2c1a21"/></g>
+  <text x="904" y="288" fill="#730223" font-family="Georgia,serif" font-size="15" font-weight="700">NOUR</text><circle cx="1080" cy="279" r="14" fill="#fff3dc"/><path d="M1074 276h12l-2 9h-8Z" fill="none" stroke="#730223" stroke-width="1.5"/>
+  <rect x="904" y="307" width="185" height="154" rx="11" fill="url(#hero)"/><circle cx="1033" cy="350" r="43" fill="#f4d18a"/><path d="M904 415q48-59 92-8t93-22v76H904Z" fill="#6e2937"/><rect x="968" y="349" width="37" height="60" rx="8" fill="#f2d6ad" transform="rotate(-8 968 349)"/>
+  <text x="905" y="490" fill="#2b2023" font-family="Arial,sans-serif" font-size="13" font-weight="700">The everyday set</text><text x="905" y="513" fill="#8a7978" font-family="Arial,sans-serif" font-size="10">Hand-finished · Made with care</text>
+  <text x="905" y="552" fill="#730223" font-family="Arial,sans-serif" font-size="15" font-weight="700">$48.00</text>
+  <rect x="904" y="570" width="185" height="43" rx="21" fill="#730223"/><text x="996" y="596" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="11" font-weight="700">Add to bag</text>
+  <g fill="#eee5e3"><rect x="904" y="636" width="185" height="8" rx="4"/><rect x="904" y="653" width="135" height="8" rx="4"/></g>
+</svg>

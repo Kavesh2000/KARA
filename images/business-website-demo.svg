@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Business website concept preview</title>
+  <desc id="desc">Illustrated responsive-ready website landing page for a fictional local coffee roaster.</desc>
+  <defs>
+    <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f3dfc5"/><stop offset="1" stop-color="#ddb894"/></linearGradient>
+    <linearGradient id="coffee" x1="0" x2="1"><stop stop-color="#684632"/><stop offset="1" stop-color="#382820"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" rx="28" fill="#f4f0e9"/>
+  <rect x="34" y="32" width="892" height="536" rx="20" fill="#fff" stroke="#e8e1d8"/>
+  <path d="M34 52a20 20 0 0 1 20-20h852a20 20 0 0 1 20 20v38H34Z" fill="#fbfaf8"/>
+  <circle cx="59" cy="61" r="5" fill="#e5aaa3"/><circle cx="77" cy="61" r="5" fill="#e8cd91"/><circle cx="95" cy="61" r="5" fill="#9cc5aa"/>
+  <rect x="284" y="49" width="390" height="24" rx="12" fill="#f0ede8"/>
+  <text x="311" y="65" fill="#99918a" font-family="Arial,sans-serif" font-size="10">www.example-coffee.com</text>
+  <rect x="34" y="90" width="892" height="478" rx="0" fill="#fff"/>
+  <rect x="34" y="90" width="892" height="66" fill="#fff"/>
+  <circle cx="80" cy="123" r="17" fill="#563925"/><path d="M73 127q7-17 14 0m-9-8h8" fill="none" stroke="#f7ead7" stroke-width="2" stroke-linecap="round"/>
+  <text x="108" y="128" fill="#392b22" font-family="Georgia,serif" font-size="18" font-weight="700">MORNING GROVE</text>
+  <g fill="#62564e" font-family="Arial,sans-serif" font-size="11">
+    <text x="540" y="127">Our coffee</text><text x="630" y="127">Our story</text><text x="715" y="127">Visit us</text>
+  </g>
+  <rect x="796" y="106" width="102" height="34" rx="17" fill="#563925"/>
+  <text x="847" y="127" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="10" font-weight="700">Shop coffee</text>
+  <rect x="34" y="156" width="892" height="330" fill="url(#hero)"/>
+  <circle cx="744" cy="323" r="148" fill="#ead1b4"/>
+  <circle cx="744" cy="323" r="120" fill="#d6b18c"/>
+  <ellipse cx="744" cy="377" rx="100" ry="25" fill="#8c694d" opacity=".18"/>
+  <path d="M686 269h104l-12 126a19 19 0 0 1-19 17h-42a19 19 0 0 1-19-17z" fill="#faf7f0"/>
+  <path d="M697 282h82l-8 76h-66z" fill="url(#coffee)"/>
+  <path d="M790 292h19a23 23 0 0 1 0 47h-18" fill="none" stroke="#faf7f0" stroke-width="13"/>
+  <path d="M703 272q-9-13 0-24m24 24q-9-13 0-24m24 24q-9-13 0-24" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4" opacity=".8"/>
+  <text x="92" y="237" fill="#755839" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">SMALL BATCH · LOCALLY ROASTED</text>
+  <text x="92" y="287" fill="#392b22" font-family="Georgia,serif" font-size="42" font-weight="700">A better kind</text>
+  <text x="92" y="333" fill="#392b22" font-family="Georgia,serif" font-size="42" font-weight="700">of morning.</text>
+  <text x="92" y="367" fill="#69594d" font-family="Arial,sans-serif" font-size="13">Thoughtful coffee, roasted fresh and ready</text>
+  <text x="92" y="387" fill="#69594d" font-family="Arial,sans-serif" font-size="13">to make your everyday a little brighter.</text>
+  <rect x="92" y="414" width="136" height="42" rx="6" fill="#563925"/>
+  <text x="160" y="440" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="11" font-weight="700">Explore our coffee</text>
+  <rect x="34" y="486" width="892" height="82" fill="#fff"/>
+  <text x="92" y="520" fill="#392b22" font-family="Georgia,serif" font-size="18" font-weight="700">Good coffee, good people.</text>
+  <text x="92" y="543" fill="#82786f" font-family="Arial,sans-serif" font-size="11">Find your new daily favourite, or come say hello at our café.</text>
+  <g fill="#7d6654" font-family="Arial,sans-serif" font-size="10"><text x="633" y="522">FRESHLY ROASTED</text><text x="785" y="522">MADE WITH CARE</text></g>
+  <text x="790" y="550" fill="#a59c93" font-family="Arial,sans-serif" font-size="9">WEBSITE CONCEPT PREVIEW</text>
+</svg>

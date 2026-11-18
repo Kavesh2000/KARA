@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f2eb">
+  <title>Morning Grove Café | KARA Website Demo</title>
+  <style>
+    :root { color-scheme:light; --ink:#35291f; --muted:#786b60; --cream:#f7f2eb; --brown:#593c2a; --green:#667a58; --line:#e8dfd3; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:82px; }
+    body { margin:0; color:var(--ink); background:#fffdf9; font:15px/1.6 "Segoe UI",Arial,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    button,input,select { font:inherit; }
+    .demo-banner { padding:8px 16px; background:#fff1d9; color:#684917; text-align:center; font-size:11px; }
+    header { position:sticky; z-index:5; top:0; background:#fffdf9ed; border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    .nav { display:flex; max-width:1100px; min-height:72px; align-items:center; justify-content:space-between; gap:18px; margin:auto; padding:0 24px; }
+    .brand { display:flex; align-items:center; gap:10px; font-family:Georgia,serif; font-size:18px; font-weight:700; letter-spacing:.04em; }
+    .brand-mark { display:grid; width:35px; height:35px; place-items:center; border-radius:50%; background:var(--brown); color:#fff5e8; }
+    .nav-links { display:flex; gap:25px; align-items:center; color:#685a4e; font-size:12px; }
+    .nav-links a:hover { color:var(--green); }
+    .button { display:inline-flex; min-height:43px; align-items:center; justify-content:center; padding:0 17px; border:0; border-radius:7px; background:var(--brown); color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
+    .button:hover { background:#422b1d; }
+    .menu-toggle { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--brown); cursor:pointer; }
+    .hero { display:grid; min-height:490px; grid-template-columns:1fr 1fr; align-items:center; gap:40px; padding:70px max(24px,calc((100vw - 1060px)/2)); background:linear-gradient(115deg,#f3e5d1,#dfc19e); }
+    .eyebrow { color:#786045; font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; }
+    h1 { max-width:500px; margin:15px 0; font-size:clamp(44px,6vw,72px); letter-spacing:-.055em; line-height:1; }
+    .hero-copy p { max-width:450px; margin:0 0 23px; color:#6c5848; font-size:15px; }
+    .hero-art { position:relative; display:grid; min-height:340px; place-items:center; }
+    .sun { position:absolute; width:min(80%,330px); aspect-ratio:1; border-radius:50%; background:#d3ad83; }
+    .cup { position:relative; width:180px; height:156px; margin-top:24px; border-radius:12px 12px 55px 55px; background:linear-gradient(90deg,#fffaf0,#f1e8d9); box-shadow:0 26px 34px #5d3d2527; }
+    .coffee { position:absolute; top:0; left:9px; width:162px; height:24px; border-radius:50%; background:linear-gradient(90deg,#4c3325,#835b3e); }
+    .handle { position:absolute; top:35px; right:-47px; width:60px; height:75px; border:13px solid #faf5ea; border-left:0; border-radius:0 35px 35px 0; }
+    .steam { position:absolute; top:-52px; left:52px; color:#fffaf0; font-family:Georgia,serif; font-size:46px; }
+    .section { max-width:1080px; margin:auto; padding:84px 24px; }
+    .section-heading { max-width:620px; margin:0 auto 30px; text-align:center; }
+    .section-heading h2 { margin:10px 0; font-size:clamp(30px,4vw,46px); letter-spacing:-.04em; }
+    .section-heading p { margin:0; color:var(--muted); font-size:13px; }
+    .menu-filters { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+    .filter { padding:8px 14px; border:1px solid var(--line); border-radius:99px; background:#fff; color:#65574b; font-size:11px; cursor:pointer; }
+    .filter.active,.filter:hover { border-color:var(--brown); background:var(--brown); color:#fff; }
+    .menu-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:17px; }
+    .menu-item { overflow:hidden; border:1px solid var(--line); border-radius:12px; background:#fff; transition:transform .2s,box-shadow .2s; }
+    .menu-item:hover { transform:translateY(-4px); box-shadow:0 15px 30px #4f392016; }
+    .menu-item[hidden] { display:none; }
+    .item-art { display:grid; height:145px; place-items:center; background:#f2e8da; }
+    .item-art span { display:grid; width:76px; height:76px; place-items:center; border-radius:50%; background:#dfc5a5; font-size:34px; }
+    .menu-item:nth-child(2) .item-art { background:#eaf1e6; }.menu-item:nth-child(3) .item-art { background:#f5e7db; }.menu-item:nth-child(4) .item-art { background:#efe8f0; }.menu-item:nth-child(5) .item-art { background:#f3ecd9; }.menu-item:nth-child(6) .item-art { background:#e8f0eb; }
+    .item-copy { padding:15px; }
+    .item-top { display:flex; justify-content:space-between; gap:10px; }
+    .item-top h3 { margin:0; font-size:17px; }
+    .item-top span { color:var(--green); font-size:12px; font-weight:700; white-space:nowrap; }
+    .item-copy p { min-height:40px; margin:8px 0 0; color:var(--muted); font-size:11px; }
+    .story { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; background:var(--cream); }
+    .story-art { display:grid; min-height:280px; place-items:center; border-radius:15px; background:linear-gradient(135deg,#d9c0a3,#a97e5d); }
+    .story-art span { color:#fff8ee; font-family:Georgia,serif; font-size:clamp(55px,10vw,100px); font-weight:700; }
+    .story h2 { margin:9px 0 13px; font-size:38px; line-height:1.1; }
+    .story p { color:var(--muted); font-size:13px; }
+    .visit { display:grid; grid-template-columns:1fr auto; align-items:center; gap:20px; padding:34px; border-radius:14px; background:#304334; color:#fff; }
+    .visit h2 { margin:0 0 5px; font-size:27px; }.visit p { margin:0; color:#d6e0d1; font-size:12px; }
+    footer { display:flex; justify-content:space-between; gap:15px; max-width:1080px; margin:auto; padding:22px 24px; color:#887d72; font-size:10px; }
+    dialog { width:min(420px,calc(100% - 28px)); padding:0; border:0; border-radius:13px; box-shadow:0 25px 70px #24180e55; }
+    dialog::backdrop { background:#24180e77; backdrop-filter:blur(3px); }
+    .dialog-body { padding:24px; }.dialog-body h2 { margin:0 36px 8px 0; font-size:26px; }.dialog-body p { color:var(--muted); font-size:12px; }
+    .dialog-close { float:right; border:0; background:none; color:var(--muted); font-size:24px; cursor:pointer; }
+    .form { display:grid; gap:12px; }.form label { display:grid; gap:5px; color:#65574b; font-size:11px; font-weight:700; }
+    .form input,.form select { min-height:40px; padding:0 10px; border:1px solid var(--line); border-radius:7px; }
+    .form-message { margin:12px 0 0; color:var(--green); font-weight:700; }
+    @media(max-width:720px) {
+      .nav { min-height:64px; padding:0 17px; }.nav-links { position:absolute; top:64px; right:0; left:0; display:none; flex-direction:column; align-items:stretch; gap:0; padding:8px 20px 16px; background:#fffdf9; border-bottom:1px solid var(--line); }.nav-links.open { display:flex; }.nav-links a { padding:12px 3px; border-bottom:1px solid var(--line); }.nav > .button { display:none; }.menu-toggle { display:block; }
+      .hero { min-height:auto; grid-template-columns:1fr; gap:12px; padding:58px 24px 32px; }.hero-art { min-height:270px; }.sun { width:230px; }
+      .section { padding:62px 18px; }.menu-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }.item-art { height:110px; }.item-art span { width:60px; height:60px; font-size:27px; }.item-copy { padding:12px; }.item-top { flex-direction:column; gap:2px; }.item-copy p { min-height:0; }
+      .story { grid-template-columns:1fr; gap:24px; }.story-art { min-height:210px; }.visit { grid-template-columns:1fr; }.visit .button { justify-self:start; }
+    }
+    @media(max-width:420px) { .menu-grid { grid-template-columns:1fr; } .item-art { height:140px; } footer { flex-direction:column; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">FICTIONAL BUSINESS WEBSITE CONCEPT · Interactions are a preview only</div>
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#home"><span class="brand-mark">M</span>MORNING GROVE</a>
+      <div class="nav-links" id="navLinks"><a href="#menu">Our coffee</a><a href="#story">Our story</a><a href="#visit">Visit us</a></div>
+      <a class="button" href="#menu">Explore the menu</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy"><span class="eyebrow">Small batch · Locally roasted</span><h1>A better kind of morning.</h1><p>Thoughtful coffee, roasted fresh and ready to make your everyday a little brighter. Find your new daily favourite or come say hello at our café.</p><a class="button" href="#menu">Explore our coffee</a></div>
+      <div class="hero-art" role="img" aria-label="Illustration of a cup of coffee"><div class="sun"></div><div class="cup"><div class="coffee"></div><div class="handle"></div><span class="steam">~</span></div></div>
+    </section>
+    <section class="section" id="menu">
+      <div class="section-heading"><span class="eyebrow">Made fresh, served with care</span><h2>Find your new favourite.</h2><p>Browse a few favourites from our sample café menu.</p></div>
+      <div class="menu-filters" role="group" aria-label="Filter menu"><button class="filter active" data-filter="all" aria-pressed="true">Everything</button><button class="filter" data-filter="coffee" aria-pressed="false">Coffee</button><button class="filter" data-filter="tea" aria-pressed="false">Tea & coolers</button><button class="filter" data-filter="bakes" aria-pressed="false">Bakes</button></div>
+      <div class="menu-grid">
+        <article class="menu-item" data-category="coffee"><div class="item-art"><span>☕</span></div><div class="item-copy"><div class="item-top"><h3>House espresso</h3><span>KES 280</span></div><p>Rich, balanced and freshly pulled to order.</p></div></article>
+        <article class="menu-item" data-category="coffee"><div class="item-art"><span>🥛</span></div><div class="item-copy"><div class="item-top"><h3>Honey latte</h3><span>KES 380</span></div><p>Espresso, silky milk and a touch of local honey.</p></div></article>
+        <article class="menu-item" data-category="tea"><div class="item-art"><span>🍵</span></div><div class="item-copy"><div class="item-top"><h3>Ginger chai</h3><span>KES 320</span></div><p>Warming black tea with ginger and gentle spice.</p></div></article>
+        <article class="menu-item" data-category="bakes"><div class="item-art"><span>🥐</span></div><div class="item-copy"><div class="item-top"><h3>Butter croissant</h3><span>KES 260</span></div><p>Flaky, golden layers baked fresh each morning.</p></div></article>
+        <article class="menu-item" data-category="bakes"><div class="item-art"><span>🍰</span></div><div class="item-copy"><div class="item-top"><h3>Banana loaf</h3><span>KES 240</span></div><p>Soft, gently spiced and made for your coffee break.</p></div></article>
+        <article class="menu-item" data-category="tea"><div class="item-art"><span>🍋</span></div><div class="item-copy"><div class="item-top"><h3>Citrus cooler</h3><span>KES 300</span></div><p>A bright, refreshing blend with fresh lemon.</p></div></article>
+      </div>
+    </section>
+    <section class="section story" id="story">
+      <div class="story-art" aria-hidden="true"><span>MG</span></div>
+      <div><span class="eyebrow">A little about us</span><h2>Good coffee. Good people.</h2><p>Morning Grove is a fictional café created to show how a small business website could bring its brand, menu and customer information together in one welcoming place.</p><p>This sample layout can be adapted to a real business, with its own photos, brand, menu, location and booking tools.</p><a class="button" href="#visit">Come say hello</a></div>
+    </section>
+    <section class="section" id="visit">
+      <div class="visit"><div><span class="eyebrow" style="color:#d8c8a9">Your next coffee break</span><h2>Make room for a good moment.</h2><p>Open the sample booking form to preview the interaction. No booking will actually be sent.</p></div><button class="button" id="reserveButton" type="button">Preview a table booking</button></div>
+    </section>
+  </main>
+  <footer><span>© <span id="year"></span> Morning Grove · Fictional website concept</span><a href="../index.html">Built as a KARA demo · Back to KARA</a></footer>
+  <dialog id="bookingDialog">
+    <div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><h2>Preview a table booking</h2><p>This sample form demonstrates how a café reservation flow could look.</p><form class="form" id="bookingForm"><label>Your name<input name="name" required placeholder="Your name"></label><label>Visit date<input name="date" type="date" required></label><label>Guests<select name="guests"><option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label><button class="button" type="submit">Preview booking</button></form><p class="form-message" id="formMessage" hidden></p></div>
+  </dialog>
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const items = document.querySelectorAll(".menu-item");
+    filters.forEach(button => button.addEventListener("click", () => {
+      const category = button.dataset.filter;
+      filters.forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-pressed", String(active)); });
+      items.forEach(item => { item.hidden = category !== "all" && item.dataset.category !== category; });
+    }));
+    const navLinks = document.getElementById("navLinks");
+    const menuToggle = document.getElementById("menuToggle");
+    menuToggle.addEventListener("click", () => { const open = navLinks.classList.toggle("open"); menuToggle.setAttribute("aria-expanded", String(open)); menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => { navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded", "false"); }));
+    const bookingDialog = document.getElementById("bookingDialog");
+    document.getElementById("reserveButton").addEventListener("click", () => bookingDialog.showModal());
+    document.querySelector(".dialog-close").addEventListener("click", () => bookingDialog.close());
+    bookingDialog.addEventListener("click", event => { if (event.target === bookingDialog) bookingDialog.close(); });
+    document.getElementById("bookingForm").addEventListener("submit", event => {
+      event.preventDefault();
+      document.getElementById("formMessage").textContent = "Demo only — no reservation has been sent.";
+      document.getElementById("formMessage").hidden = false;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

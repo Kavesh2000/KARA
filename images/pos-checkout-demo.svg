@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Point-of-sale checkout concept preview</title>
+  <desc id="desc">Illustrated point-of-sale screen with product tiles, basket, and a sample checkout total.</desc>
+  <defs>
+    <linearGradient id="page" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4f7fb"/><stop offset="1" stop-color="#e8eef8"/></linearGradient>
+    <linearGradient id="pay" x1="0" x2="1"><stop stop-color="#7651d6"/><stop offset="1" stop-color="#5643bc"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" rx="28" fill="url(#page)"/>
+  <rect x="35" y="32" width="890" height="536" rx="20" fill="#fff" stroke="#e3e7ef"/>
+  <rect x="35" y="32" width="890" height="62" rx="20" fill="#fff"/>
+  <path d="M35 74h890" stroke="#eceaf0"/>
+  <rect x="58" y="47" width="34" height="34" rx="10" fill="#7651d6"/>
+  <path d="M68 55v18m0-9h9m-9 0 8-8m3 8 7 9" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.4"/>
+  <text x="104" y="69" fill="#24212b" font-family="Arial,sans-serif" font-size="16" font-weight="700">KARA POINT OF SALE</text>
+  <text x="744" y="68" fill="#77747e" font-family="Arial,sans-serif" font-size="12">Register 01</text>
+  <circle cx="858" cy="62" r="5" fill="#38a47b"/><text x="871" y="67" fill="#55505c" font-family="Arial,sans-serif" font-size="12">Ready</text>
+  <text x="60" y="128" fill="#24212b" font-family="Arial,sans-serif" font-size="22" font-weight="700">New sale</text>
+  <rect x="60" y="147" width="538" height="42" rx="10" fill="#f8f7fa" stroke="#e9e6ef"/>
+  <circle cx="82" cy="168" r="7" fill="none" stroke="#8f8998" stroke-width="1.6"/><path d="m87 173 5 5" stroke="#8f8998" stroke-width="1.6"/>
+  <text x="105" y="173" fill="#9a95a1" font-family="Arial,sans-serif" font-size="12">Search products or scan barcode</text>
+  <text x="60" y="225" fill="#77747e" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1">POPULAR ITEMS</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="60" y="244" width="164" height="127" rx="13" fill="#f2edfc"/><circle cx="142" cy="287" r="25" fill="#d9cbf6"/><path d="M126 292h32l-4-20h-24z" fill="#7651d6"/><path d="M123 294h38v5h-38z" fill="#5b3fc9"/><text x="76" y="335" fill="#292632" font-size="12" font-weight="700">Daily blend</text><text x="76" y="354" fill="#7651d6" font-size="12" font-weight="700">KES 450</text>
+    <rect x="239" y="244" width="164" height="127" rx="13" fill="#eaf4ef"/><circle cx="321" cy="287" r="25" fill="#cfe5d8"/><path d="M308 270h26v34h-26z" rx="3" fill="#3f8d6a"/><path d="M312 276h18m-18 6h18m-18 6h12" stroke="#eaf4ef" stroke-width="2"/><text x="255" y="335" fill="#292632" font-size="12" font-weight="700">House tea</text><text x="255" y="354" fill="#3f8d6a" font-size="12" font-weight="700">KES 320</text>
+    <rect x="418" y="244" width="164" height="127" rx="13" fill="#fff2e4"/><circle cx="500" cy="287" r="25" fill="#f5ddc2"/><path d="M484 291q16-30 32 0v9h-32z" fill="#c37b40"/><path d="M486 295h28" stroke="#fff2e4" stroke-width="3"/><text x="434" y="335" fill="#292632" font-size="12" font-weight="700">Fresh pastry</text><text x="434" y="354" fill="#b66d36" font-size="12" font-weight="700">KES 280</text>
+    <rect x="60" y="388" width="164" height="127" rx="13" fill="#eaf0fb"/><circle cx="142" cy="431" r="25" fill="#d0dcf3"/><path d="M127 434h30v16h-30z" fill="#5b77bf"/><path d="M131 428h22v6h-22z" fill="#405d9e"/><text x="76" y="479" fill="#292632" font-size="12" font-weight="700">Sparkling water</text><text x="76" y="498" fill="#506caf" font-size="12" font-weight="700">KES 180</text>
+    <rect x="239" y="388" width="164" height="127" rx="13" fill="#faedf1"/><circle cx="321" cy="431" r="25" fill="#f0d4df"/><path d="M312 413h18l-2 36h-14z" fill="#b95879"/><path d="M314 420h14" stroke="#faedf1" stroke-width="2"/><text x="255" y="479" fill="#292632" font-size="12" font-weight="700">Berry cooler</text><text x="255" y="498" fill="#aa4f70" font-size="12" font-weight="700">KES 380</text>
+  </g>
+  <rect x="620" y="112" width="275" height="403" rx="15" fill="#fff" stroke="#e9e6ef"/>
+  <text x="645" y="146" fill="#24212b" font-family="Arial,sans-serif" font-size="16" font-weight="700">Current order</text>
+  <text x="645" y="169" fill="#9995a1" font-family="Arial,sans-serif" font-size="11">3 items</text>
+  <g font-family="Arial,sans-serif" font-size="12">
+    <text x="645" y="213" fill="#34313c">Daily blend</text><text x="645" y="232" fill="#9995a1" font-size="10">1 × KES 450</text><text x="845" y="221" text-anchor="end" fill="#34313c">KES 450</text>
+    <path d="M645 247h224" stroke="#efedf2"/>
+    <text x="645" y="277" fill="#34313c">House tea</text><text x="645" y="296" fill="#9995a1" font-size="10">1 × KES 320</text><text x="845" y="285" text-anchor="end" fill="#34313c">KES 320</text>
+    <path d="M645 311h224" stroke="#efedf2"/>
+    <text x="645" y="341" fill="#34313c">Fresh pastry</text><text x="645" y="360" fill="#9995a1" font-size="10">1 × KES 280</text><text x="845" y="349" text-anchor="end" fill="#34313c">KES 280</text>
+  </g>
+  <path d="M645 382h224" stroke="#efedf2"/>
+  <text x="645" y="414" fill="#77747e" font-family="Arial,sans-serif" font-size="12">Subtotal</text><text x="860" y="414" text-anchor="end" fill="#34313c" font-family="Arial,sans-serif" font-size="12">KES 1,050</text>
+  <text x="645" y="442" fill="#77747e" font-family="Arial,sans-serif" font-size="12">Tax</text><text x="860" y="442" text-anchor="end" fill="#34313c" font-family="Arial,sans-serif" font-size="12">Included</text>
+  <path d="M645 457h224" stroke="#efedf2"/>
+  <text x="645" y="486" fill="#24212b" font-family="Arial,sans-serif" font-size="14" font-weight="700">Total</text><text x="860" y="486" text-anchor="end" fill="#24212b" font-family="Arial,sans-serif" font-size="17" font-weight="700">KES 1,050</text>
+  <rect x="645" y="499" width="224" height="1" fill="#efedf2"/>
+  <rect x="645" y="525" width="224" height="1" fill="#efedf2"/>
+</svg>

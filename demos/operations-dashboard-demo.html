@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1ff">
+  <title>Operations Dashboard Demo | KARA</title>
+  <style>
+    :root { color-scheme:light; --ink:#272436; --muted:#7c7889; --line:#e7e5ed; --paper:#f5f4fa; --nav:#252334; --purple:#7651d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:14px/1.5 "Segoe UI",Arial,sans-serif; }
+    button,input,select { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    .demo-banner { padding:9px 16px; background:#fff3d8; color:#684917; text-align:center; font-size:11px; }
+    .layout { display:grid; min-height:calc(100vh - 38px); grid-template-columns:220px minmax(0,1fr); }
+    aside { display:flex; flex-direction:column; padding:24px 15px; background:var(--nav); color:#eeeaf6; }
+    .brand { display:flex; align-items:center; gap:10px; padding:0 6px 26px; font-size:15px; font-weight:800; letter-spacing:.05em; }
+    .brand-mark { display:grid; width:34px; height:34px; place-items:center; border-radius:10px; background:linear-gradient(135deg,#8b6ae9,#5b3fc9); color:#fff; }
+    .nav-label { margin:0 8px 10px; color:#a59fb2; font-size:10px; font-weight:700; letter-spacing:.12em; }
+    .nav-link { margin:2px 0; padding:11px 10px; border-radius:8px; color:#d5d0df; font-size:13px; }
+    .nav-link.active,.nav-link:hover { background:#ffffff19; color:#fff; }
+    .side-note { margin-top:auto; padding:14px 9px 0; border-top:1px solid #ffffff24; color:#c2bdce; font-size:11px; }
+    main { min-width:0; padding:24px clamp(16px,4vw,48px) 48px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:30px; color:var(--muted); font-size:12px; }
+    .topbar a { color:#4b465a; font-weight:700; }
+    .button { min-height:40px; padding:0 15px; border:0; border-radius:8px; background:var(--purple); color:#fff; font-weight:700; cursor:pointer; }
+    .button:hover { filter:brightness(.94); }
+    .button.secondary { border:1px solid var(--line); background:white; color:#464154; }
+    .heading { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px; }
+    .eyebrow { color:var(--purple); font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { margin:6px 0 4px; font-size:clamp(24px,3vw,34px); letter-spacing:-.04em; }
+    .subheading { margin:0; color:var(--muted); }
+    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:24px; }
+    .metric { padding:16px 19px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 6px 20px #211a3010; }
+    .metric span { display:block; color:var(--muted); font-size:11px; }
+    .metric strong { display:block; margin-top:7px; font-size:25px; letter-spacing:-.04em; }
+    .metric small { color:#8c8797; font-size:10px; }
+    .toolbar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin:0 0 15px; }
+    .toolbar h2 { margin:0; font-size:18px; }
+    .toolbar-controls { display:flex; flex-wrap:wrap; gap:8px; }
+    .toolbar input,.toolbar select,.task-form input,.task-form select { min-height:38px; padding:0 11px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); }
+    .task-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+    .task-column { min-height:295px; padding:13px; border:1px solid var(--line); border-radius:12px; background:#eeedf4; }
+    .column-head { display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0 2px 12px; font-size:12px; font-weight:800; }
+    .count { display:grid; min-width:22px; height:22px; place-items:center; border-radius:7px; background:#fff; color:#777184; font-size:10px; }
+    .task-list { display:grid; gap:10px; }
+    .task-card { padding:13px; border:1px solid #e8e5ee; border-radius:9px; background:#fff; box-shadow:0 3px 10px #211a3008; }
+    .task-card h3 { margin:8px 0 5px; font-size:13px; }
+    .task-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.6; }
+    .task-meta { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:7px; margin-top:12px; }
+    .priority { padding:4px 8px; border-radius:20px; background:#fff1d8; color:#956919; font-size:9px; font-weight:750; }
+    .priority.high { background:#fbe7e7; color:#a54242; }.priority.low { background:#e8f4eb; color:#287650; }
+    .assignee { color:#777184; font-size:10px; }
+    .task-actions { display:flex; gap:5px; margin-top:12px; padding-top:10px; border-top:1px solid #f0eef3; }
+    .task-actions button { padding:5px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; color:#514a64; font-size:10px; font-weight:700; cursor:pointer; }
+    .task-actions button:hover { border-color:#cfc5e7; color:var(--purple); }
+    .empty { padding:22px 8px; color:var(--muted); text-align:center; font-size:11px; }
+    dialog { width:min(440px,calc(100% - 28px)); padding:0; border:0; border-radius:14px; box-shadow:0 25px 80px #17121e55; }
+    dialog::backdrop { background:#17121e80; backdrop-filter:blur(3px); }
+    .dialog-body { padding:24px; }.dialog-body h2 { margin:0 34px 16px 0; font-size:21px; }
+    .dialog-close { float:right; border:0; background:transparent; color:#777184; font-size:24px; cursor:pointer; }
+    .task-form { display:grid; gap:13px; }.field { display:grid; gap:6px; }.field label { color:#5c566b; font-size:11px; font-weight:700; }.field input,.field select { width:100%; }
+    .form-note { margin:11px 0 0; color:var(--muted); font-size:11px; }
+    .toast { position:fixed; right:20px; bottom:20px; padding:12px 16px; border-radius:9px; background:#29263a; color:#fff; box-shadow:0 8px 22px #17121e33; }
+    @media(max-width:850px) { .task-grid { grid-template-columns:1fr; }.task-column { min-height:120px; } }
+    @media(max-width:760px) { .layout { grid-template-columns:1fr; } aside { padding:13px 16px; }.brand { padding:0 4px 12px; }.nav-label,.side-note { display:none; }.nav-list { display:flex; gap:4px; overflow:auto; }.nav-link { flex:0 0 auto; padding:8px 10px; font-size:11px; } main { padding:18px 14px 36px; }.topbar { margin-bottom:22px; }.metrics { gap:8px; }.metric { padding:13px 12px; }.metric strong { font-size:20px; } }
+    @media(max-width:450px) { .metrics { grid-template-columns:1fr; }.topbar { align-items:flex-start; flex-direction:column; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">INTERACTIVE OPERATIONS CONCEPT · Fictional tasks · Changes reset when refreshed</div>
+  <div class="layout">
+    <aside>
+      <a class="brand" href="../index.html"><span class="brand-mark">K</span>KARA WORKSPACE</a>
+      <div class="nav-label">TEAM WORKSPACE</div>
+      <nav class="nav-list" aria-label="Operations navigation">
+        <a class="nav-link active" href="#tasks">Task board</a>
+        <a class="nav-link" href="#tasks" id="newTaskNav">Create task</a>
+      </nav>
+      <p class="side-note">Demo workspace<br>Tasks stay in this browser session only.</p>
+    </aside>
+    <main>
+      <div class="topbar"><a href="../index.html">← Back to KARA</a><button class="button secondary" id="resetDemo" type="button">Reset demo</button></div>
+      <section class="heading" aria-labelledby="pageTitle">
+        <div><span class="eyebrow">Team operations</span><h1 id="pageTitle">Good morning, team.</h1><p class="subheading">A shared view of priorities, ownership and progress.</p></div>
+        <button class="button" id="newTask" type="button">＋ Create task</button>
+      </section>
+      <section class="metrics" aria-label="Task summary">
+        <article class="metric"><span>Open tasks</span><strong id="openCount">0</strong><small>Work still to move forward</small></article>
+        <article class="metric"><span>Completed</span><strong id="completedCount">0</strong><small>In this demo workspace</small></article>
+        <article class="metric"><span>Due today</span><strong id="dueCount">0</strong><small>Priorities for the team</small></article>
+      </section>
+      <section id="tasks" aria-labelledby="boardTitle">
+        <div class="toolbar"><h2 id="boardTitle">Task board</h2><div class="toolbar-controls"><select id="assigneeFilter" aria-label="Filter by owner"><option value="all">Everyone</option><option>Jordan</option><option>Morgan</option><option>Casey</option><option>Alex</option></select><input id="search" type="search" placeholder="Search tasks" aria-label="Search tasks"></div></div>
+        <div class="task-grid">
+          <section class="task-column" data-status="To do"><h3 class="column-head"><span>To do</span><span class="count" id="countTodo">0</span></h3><div class="task-list" id="listTodo"></div></section>
+          <section class="task-column" data-status="In progress"><h3 class="column-head"><span>In progress</span><span class="count" id="countProgress">0</span></h3><div class="task-list" id="listProgress"></div></section>
+          <section class="task-column" data-status="Done"><h3 class="column-head"><span>Done</span><span class="count" id="countDone">0</span></h3><div class="task-list" id="listDone"></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+  <dialog id="taskDialog"><div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><h2>Create a sample task</h2><form class="task-form" id="taskForm">
+    <div class="field"><label for="taskTitle">Task title</label><input id="taskTitle" name="title" maxlength="90" required placeholder="e.g. Prepare weekly report"></div>
+    <div class="field"><label for="taskDescription">Description</label><input id="taskDescription" name="description" maxlength="180" placeholder="Add a short note"></div>
+    <div class="field"><label for="taskOwner">Owner</label><select id="taskOwner" name="owner"><option>Jordan</option><option>Morgan</option><option>Casey</option><option>Alex</option></select></div>
+    <div class="field"><label for="taskPriority">Priority</label><select id="taskPriority" name="priority"><option>Normal</option><option>High</option><option>Low</option></select></div>
+    <div class="field"><label for="taskStatus">Status</label><select id="taskStatus" name="status"><option>To do</option><option>In progress</option><option>Done</option></select></div>
+    <button class="button" type="submit">Add sample task</button>
+  </form><p class="form-note">No task is sent to a real team or saved to a server.</p></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    const seedTasks = [
+      { id:1, title:"Review incoming requests", description:"Sort new requests and assign next steps.", owner:"Jordan", priority:"High", status:"To do", dueToday:true },
+      { id:2, title:"Prepare weekly team update", description:"Gather progress notes for the Friday check-in.", owner:"Morgan", priority:"Normal", status:"To do", dueToday:true },
+      { id:3, title:"Update onboarding checklist", description:"Add the latest team setup steps.", owner:"Casey", priority:"Low", status:"In progress", dueToday:false },
+      { id:4, title:"Confirm supplier schedule", description:"Check delivery dates and update the team.", owner:"Alex", priority:"High", status:"In progress", dueToday:true },
+      { id:5, title:"Organize project workspace", description:"Group shared files and archive old drafts.", owner:"Jordan", priority:"Normal", status:"Done", dueToday:false }
+    ];
+    let tasks = seedTasks.map(task => ({ ...task }));
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" })[character]);
+    const className = value => value.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "");
+    const statusTargets = { "To do":"listTodo", "In progress":"listProgress", "Done":"listDone" };
+    function render() {
+      const owner = document.getElementById("assigneeFilter").value;
+      const query = document.getElementById("search").value.trim().toLowerCase();
+      const visible = tasks.filter(task => (owner === "all" || task.owner === owner) && `${task.title} ${task.description} ${task.owner}`.toLowerCase().includes(query));
+      Object.values(statusTargets).forEach(id => { document.getElementById(id).replaceChildren(); });
+      for (const task of visible) {
+        const card = document.createElement("article");
+        card.className = "task-card";
+        const safeTitle = escapeHtml(task.title);
+        const safeDescription = escapeHtml(task.description || "No additional details.");
+        const safeOwner = escapeHtml(task.owner);
+        const priorityClass = className(task.priority);
+        card.innerHTML = `<span class="priority ${priorityClass}">${escapeHtml(task.priority)} priority</span><h3>${safeTitle}</h3><p>${safeDescription}</p><div class="task-meta"><span class="assignee">Owner: ${safeOwner}</span><span class="assignee">${task.dueToday ? "Due today" : "Team task"}</span></div><div class="task-actions">${task.status !== "To do" ? `<button type="button" data-move="To do" data-id="${task.id}">To do</button>` : ""}${task.status !== "In progress" ? `<button type="button" data-move="In progress" data-id="${task.id}">In progress</button>` : ""}${task.status !== "Done" ? `<button type="button" data-move="Done" data-id="${task.id}">Mark done</button>` : ""}</div>`;
+        document.getElementById(statusTargets[task.status]).append(card);
+      }
+      for (const [status, target] of Object.entries(statusTargets)) {
+        const column = document.getElementById(target);
+        document.getElementById(status === "To do" ? "countTodo" : status === "In progress" ? "countProgress" : "countDone").textContent = column.children.length;
+        if (!column.children.length) column.innerHTML = '<div class="empty">No matching tasks</div>';
+      }
+      document.getElementById("openCount").textContent = tasks.filter(task => task.status !== "Done").length;
+      document.getElementById("completedCount").textContent = tasks.filter(task => task.status === "Done").length;
+      document.getElementById("dueCount").textContent = tasks.filter(task => task.dueToday && task.status !== "Done").length;
+    }
+    function toast(message) {
+      const element = document.getElementById("toast");
+      element.textContent = message;
+      element.hidden = false;
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => { element.hidden = true; }, 2500);
+    }
+    document.querySelector(".task-grid").addEventListener("click", event => {
+      const button = event.target.closest("[data-move]");
+      if (!button) return;
+      const task = tasks.find(item => item.id === Number(button.dataset.id));
+      if (!task) return;
+      task.status = button.dataset.move;
+      render();
+      toast("Task status updated.");
+    });
+    document.getElementById("assigneeFilter").addEventListener("change", render);
+    document.getElementById("search").addEventListener("input", render);
+    function openTaskDialog() { document.getElementById("taskForm").reset(); document.getElementById("taskDialog").showModal(); }
+    document.getElementById("newTask").addEventListener("click", openTaskDialog);
+    document.getElementById("newTaskNav").addEventListener("click", event => { event.preventDefault(); openTaskDialog(); });
+    document.getElementById("taskForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const values = new FormData(event.currentTarget);
+      tasks.unshift({ id:Math.max(0, ...tasks.map(task => task.id)) + 1, title:values.get("title").toString().trim(), description:values.get("description").toString().trim(), owner:values.get("owner").toString(), priority:values.get("priority").toString(), status:values.get("status").toString(), dueToday:false });
+      document.getElementById("taskDialog").close();
+      document.getElementById("assigneeFilter").value = "all";
+      document.getElementById("search").value = "";
+      render();
+      toast("Sample task added.");
+    });
+    document.getElementById("resetDemo").addEventListener("click", () => { tasks = seedTasks.map(task => ({ ...task })); document.getElementById("assigneeFilter").value = "all"; document.getElementById("search").value = ""; render(); toast("Demo tasks reset."); });
+    document.querySelector(".dialog-close").addEventListener("click", () => document.getElementById("taskDialog").close());
+    document.getElementById("taskDialog").addEventListener("click", event => { if (event.target === event.currentTarget) event.currentTarget.close(); });
+    render();
+  </script>
+</body>
+</html>

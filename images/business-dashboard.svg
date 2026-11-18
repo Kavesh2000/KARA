@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">Business operations dashboard concept</title>
+  <desc id="desc">A clean analytics dashboard with sales, team activity, charts and task tracking.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9e9ec"/><stop offset="1" stop-color="#fff1d7"/></linearGradient>
+    <linearGradient id="chart" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#730223" stop-opacity=".24"/><stop offset="1" stop-color="#730223" stop-opacity="0"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#32101c" flood-opacity=".15"/></filter>
+  </defs>
+  <rect width="1200" height="850" rx="44" fill="url(#bg)"/>
+  <rect x="93" y="79" width="1014" height="692" rx="27" fill="#fff" filter="url(#shadow)"/>
+  <path d="M120 79h203v692H120a27 27 0 0 1-27-27V106a27 27 0 0 1 27-27Z" fill="#33131f"/>
+  <circle cx="143" cy="124" r="16" fill="#efa92d"/><path d="m137 124 5 5 9-11" fill="none" stroke="#730223" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="172" y="130" fill="#fff" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="1">KARA WORKSPACE</text>
+  <text x="129" y="195" fill="#c6a9b1" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="2">MENU</text>
+  <g font-family="Arial,sans-serif" font-size="13"><rect x="115" y="215" width="178" height="46" rx="11" fill="#ffffff1c"/><circle cx="141" cy="238" r="7" fill="#efa92d"/><text x="160" y="243" fill="#fff">Overview</text><text x="160" y="295" fill="#d9c8ce">Analytics</text><text x="160" y="347" fill="#d9c8ce">Orders</text><text x="160" y="399" fill="#d9c8ce">Customers</text><text x="160" y="451" fill="#d9c8ce">Inventory</text></g>
+  <g fill="#d0b8bf"><circle cx="140" cy="290" r="6"/><circle cx="140" cy="342" r="6"/><circle cx="140" cy="394" r="6"/><circle cx="140" cy="446" r="6"/></g>
+  <text x="367" y="132" fill="#281a20" font-family="Arial,sans-serif" font-size="26" font-weight="700">Good morning, Alex</text>
+  <text x="367" y="161" fill="#8b7f81" font-family="Arial,sans-serif" font-size="14">Here’s your business at a glance.</text>
+  <rect x="930" y="108" width="132" height="43" rx="21" fill="#fff3dc"/><circle cx="954" cy="129" r="6" fill="#efa92d"/><text x="971" y="134" fill="#6c4a20" font-family="Arial,sans-serif" font-size="12" font-weight="700">This month</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="365" y="196" width="205" height="119" rx="15" fill="#fff" stroke="#eee5e3" stroke-width="2"/><text x="386" y="227" fill="#87797b" font-size="12">Total sales</text><text x="386" y="272" fill="#27171f" font-size="29" font-weight="700">$24,680</text><text x="386" y="295" fill="#608265" font-size="11">↗ 12.8% this month</text>
+    <rect x="589" y="196" width="205" height="119" rx="15" fill="#fff" stroke="#eee5e3" stroke-width="2"/><text x="610" y="227" fill="#87797b" font-size="12">Orders</text><text x="610" y="272" fill="#27171f" font-size="29" font-weight="700">1,284</text><text x="610" y="295" fill="#608265" font-size="11">↗ 8.2% this month</text>
+    <rect x="813" y="196" width="249" height="119" rx="15" fill="#fff" stroke="#eee5e3" stroke-width="2"/><text x="834" y="227" fill="#87797b" font-size="12">Active customers</text><text x="834" y="272" fill="#27171f" font-size="29" font-weight="700">846</text><text x="834" y="295" fill="#608265" font-size="11">↗ 4.6% this month</text>
+  </g>
+  <rect x="365" y="340" width="426" height="345" rx="16" fill="#fff" stroke="#eee5e3" stroke-width="2"/>
+  <text x="390" y="378" fill="#281a20" font-family="Arial,sans-serif" font-size="15" font-weight="700">Sales overview</text>
+  <text x="390" y="402" fill="#978b8c" font-family="Arial,sans-serif" font-size="11">Revenue through the year</text>
+  <g stroke="#f0e9e7" stroke-width="2"><path d="M405 469h356M405 519h356M405 569h356M405 619h356"/></g>
+  <path d="M405 602C439 583 452 588 480 562S522 574 551 535 595 550 626 504 671 527 701 475 730 484 761 443V638H405Z" fill="url(#chart)"/>
+  <path d="M405 602C439 583 452 588 480 562S522 574 551 535 595 550 626 504 671 527 701 475 730 484 761 443" fill="none" stroke="#730223" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#9a8d8f" font-family="Arial,sans-serif" font-size="10"><text x="405" y="656">Jan</text><text x="476" y="656">Mar</text><text x="547" y="656">May</text><text x="618" y="656">Jul</text><text x="689" y="656">Sep</text><text x="745" y="656">Nov</text></g>
+  <rect x="812" y="340" width="250" height="345" rx="16" fill="#fff" stroke="#eee5e3" stroke-width="2"/>
+  <text x="836" y="378" fill="#281a20" font-family="Arial,sans-serif" font-size="15" font-weight="700">Today’s activity</text>
+  <g font-family="Arial,sans-serif"><circle cx="842" cy="423" r="16" fill="#f7e9ed"/><text x="842" y="428" text-anchor="middle" fill="#730223" font-size="12" font-weight="700">J</text><text x="870" y="419" fill="#31252a" font-size="11" font-weight="700">New order received</text><text x="870" y="438" fill="#998b8c" font-size="10">2 minutes ago</text>
+  <circle cx="842" cy="481" r="16" fill="#fff3dc"/><text x="842" y="486" text-anchor="middle" fill="#8b5a11" font-size="12" font-weight="700">M</text><text x="870" y="477" fill="#31252a" font-size="11" font-weight="700">Payment confirmed</text><text x="870" y="496" fill="#998b8c" font-size="10">18 minutes ago</text>
+  <circle cx="842" cy="539" r="16" fill="#efe9e5"/><text x="842" y="544" text-anchor="middle" fill="#615458" font-size="12" font-weight="700">A</text><text x="870" y="535" fill="#31252a" font-size="11" font-weight="700">Stock updated</text><text x="870" y="554" fill="#998b8c" font-size="10">41 minutes ago</text></g>
+  <rect x="835" y="594" width="204" height="58" rx="11" fill="#fbf4ee"/><text x="854" y="618" fill="#7f7070" font-family="Arial,sans-serif" font-size="10">All systems running smoothly</text><circle cx="856" cy="636" r="4" fill="#648368"/><text x="868" y="640" fill="#527052" font-family="Arial,sans-serif" font-size="10" font-weight="700">Everything up to date</text>
+</svg>

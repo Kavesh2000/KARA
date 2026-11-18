@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4fa">
+  <title>Helpdesk Demo | KARA</title>
+  <style>
+    :root { color-scheme:light; --ink:#272436; --muted:#7d7889; --line:#e8e6ee; --paper:#f5f4fa; --nav:#29263a; --purple:#7651d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:14px/1.5 "Segoe UI",Arial,sans-serif; }
+    button,input,select,textarea { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    .demo-banner { padding:9px 16px; background:#fff3d8; color:#684917; text-align:center; font-size:11px; }
+    .layout { display:grid; min-height:calc(100vh - 38px); grid-template-columns:220px minmax(0,1fr); }
+    aside { display:flex; flex-direction:column; padding:24px 15px; background:var(--nav); color:#eeeaf6; }
+    .brand { display:flex; align-items:center; gap:10px; padding:0 6px 26px; font-size:15px; font-weight:800; letter-spacing:.06em; }
+    .brand-mark { display:grid; width:34px; height:34px; place-items:center; border-radius:10px; background:var(--purple); color:white; }
+    .nav-label { margin:0 8px 10px; color:#a59fb2; font-size:10px; font-weight:700; letter-spacing:.12em; }
+    .nav-link { margin:2px 0; padding:11px 10px; border-radius:8px; color:#d5d0df; font-size:13px; }
+    .nav-link.active,.nav-link:hover { background:#ffffff19; color:#fff; }
+    .side-note { margin-top:auto; padding:14px 9px 0; border-top:1px solid #ffffff24; color:#c2bdce; font-size:11px; }
+    main { min-width:0; padding:24px clamp(16px,4vw,48px) 48px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:30px; color:var(--muted); font-size:12px; }
+    .topbar a { color:#4b465a; font-weight:700; }
+    .button { min-height:40px; padding:0 15px; border:0; border-radius:8px; background:var(--purple); color:#fff; font-weight:700; cursor:pointer; }
+    .button:hover { filter:brightness(.94); }
+    .button.secondary { border:1px solid var(--line); background:white; color:#464154; }
+    .heading { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px; }
+    .eyebrow { color:var(--purple); font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { margin:6px 0 4px; font-size:clamp(24px,3vw,34px); letter-spacing:-.04em; }
+    .subheading { margin:0; color:var(--muted); }
+    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:24px; }
+    .metric { padding:16px 19px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 6px 20px #211a3010; }
+    .metric span { display:block; color:var(--muted); font-size:11px; }
+    .metric strong { display:block; margin-top:7px; font-size:25px; letter-spacing:-.04em; }
+    .metric small { color:#8c8797; font-size:10px; }
+    .panel { overflow:hidden; border:1px solid var(--line); border-radius:13px; background:#fff; box-shadow:0 7px 24px #211a300b; }
+    .panel-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; padding:18px 20px; }
+    .panel-head h2 { margin:0; font-size:17px; }
+    .controls { display:flex; flex-wrap:wrap; gap:8px; }
+    .controls input,.controls select,.field input,.field select,.field textarea { min-height:38px; padding:8px 11px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); }
+    .table-wrap { overflow:auto; }
+    table { width:100%; min-width:720px; border-collapse:collapse; text-align:left; }
+    th { padding:12px 17px; background:#f7f5fb; color:#817b8f; font-size:9px; letter-spacing:.06em; text-transform:uppercase; }
+    td { padding:13px 17px; border-top:1px solid var(--line); font-size:12px; }
+    tbody tr:hover { background:#fbfaff; }
+    .ticket-title { font-weight:700; }.ticket-id { display:block; color:#938d9d; font-size:10px; }
+    .badge { display:inline-block; padding:5px 9px; border-radius:20px; background:#fff1d8; color:#986a1a; font-size:10px; font-weight:700; white-space:nowrap; }
+    .badge.in-progress { background:#e9e2ff; color:#5f46b4; }.badge.resolved { background:#e4f4eb; color:#287650; }
+    .badge.high,.badge.urgent { background:#fbe7e7; color:#a54242; }.badge.low { background:#e8f4eb; color:#287650; }
+    .row-action { padding:6px 10px; border:1px solid #e3deeb; border-radius:6px; background:#fff; color:#514a64; font-size:10px; font-weight:700; cursor:pointer; }
+    .empty { padding:32px; color:var(--muted); text-align:center; }
+    dialog { width:min(480px,calc(100% - 28px)); max-height:calc(100% - 28px); overflow:auto; padding:0; border:0; border-radius:14px; box-shadow:0 25px 80px #17121e55; }
+    dialog::backdrop { background:#17121e80; backdrop-filter:blur(3px); }
+    .dialog-body { padding:24px; }.dialog-body h2 { margin:0 34px 16px 0; font-size:21px; }
+    .dialog-close { float:right; border:0; background:transparent; color:#777184; font-size:24px; cursor:pointer; }
+    .details-list { display:grid; gap:10px; margin:0 0 18px; }.details-list div { display:flex; justify-content:space-between; gap:12px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+    .details-list dt { color:var(--muted); }.details-list dd { margin:0; font-weight:700; text-align:right; }
+    .form { display:grid; gap:13px; }.field { display:grid; gap:6px; }.field label { color:#5c566b; font-size:11px; font-weight:700; }
+    .field input,.field select,.field textarea { width:100%; }.field textarea { min-height:95px; resize:vertical; }
+    .form-note { margin:11px 0 0; color:var(--muted); font-size:11px; }.dialog-actions { display:flex; flex-wrap:wrap; gap:9px; }
+    .toast { position:fixed; right:20px; bottom:20px; padding:12px 16px; border-radius:9px; background:#29263a; color:#fff; box-shadow:0 8px 22px #17121e33; }
+    @media(max-width:760px) { .layout { grid-template-columns:1fr; } aside { padding:13px 16px; }.brand { padding:0 4px 12px; }.nav-label,.side-note { display:none; }.nav-list { display:flex; gap:4px; overflow:auto; }.nav-link { flex:0 0 auto; padding:8px 10px; font-size:11px; } main { padding:18px 14px 36px; }.topbar { margin-bottom:22px; }.metrics { gap:8px; }.metric { padding:13px 12px; }.metric strong { font-size:20px; } }
+    @media(max-width:450px) { .metrics { grid-template-columns:1fr; }.topbar { align-items:flex-start; flex-direction:column; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">INTERACTIVE HELPDESK CONCEPT · Fictional sample tickets · No messages are sent</div>
+  <div class="layout">
+    <aside>
+      <a class="brand" href="../index.html"><span class="brand-mark">K</span>KARA SUPPORT</a>
+      <div class="nav-label">SUPPORT DESK</div>
+      <nav class="nav-list" aria-label="Helpdesk navigation">
+        <a class="nav-link active" href="#tickets">Ticket inbox</a>
+        <a class="nav-link" href="#tickets" id="newTicketNav">Create ticket</a>
+      </nav>
+      <p class="side-note">Demo workspace<br>Tickets reset when this page is refreshed.</p>
+    </aside>
+    <main>
+      <div class="topbar"><a href="../index.html">← Back to KARA</a><button class="button secondary" id="resetDemo" type="button">Reset demo</button></div>
+      <section class="heading" aria-labelledby="pageTitle">
+        <div><span class="eyebrow">Customer support</span><h1 id="pageTitle">Helpdesk inbox</h1><p class="subheading">Keep requests organized and help every customer get a response.</p></div>
+        <button class="button" id="newTicket" type="button">＋ Create ticket</button>
+      </section>
+      <section class="metrics" aria-label="Ticket summary">
+        <article class="metric"><span>Open tickets</span><strong id="openCount">0</strong><small>Need a team response</small></article>
+        <article class="metric"><span>Resolved</span><strong id="resolvedCount">0</strong><small>In this sample inbox</small></article>
+        <article class="metric"><span>Urgent / high priority</span><strong id="priorityCount">0</strong><small>Prioritize these requests</small></article>
+      </section>
+      <section class="panel" id="tickets" aria-labelledby="ticketListTitle">
+        <div class="panel-head"><div><h2 id="ticketListTitle">Recent tickets</h2><span class="subheading">Open a ticket to review it or update its status.</span></div>
+          <div class="controls"><select id="statusFilter" aria-label="Filter tickets by status"><option value="all">All statuses</option><option>Open</option><option>In progress</option><option>Resolved</option></select><select id="priorityFilter" aria-label="Filter tickets by priority"><option value="all">All priorities</option><option>Urgent</option><option>High</option><option>Normal</option><option>Low</option></select><input id="search" type="search" placeholder="Search tickets" aria-label="Search tickets"></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Ticket / customer</th><th>Priority</th><th>Category</th><th>Status</th><th>Updated</th><th>Action</th></tr></thead><tbody id="ticketRows"></tbody></table></div>
+        <div id="emptyState" class="empty" hidden>No matching tickets. Change the filters or create a ticket.</div>
+      </section>
+    </main>
+  </div>
+  <dialog id="ticketDialog"><div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><h2 id="dialogTitle"></h2><div id="dialogContent"></div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    const seedTickets = [
+      { id:"HD-1034", subject:"Cannot access account", customer:"Jamie K.", category:"Account access", priority:"High", status:"Open", description:"I reset my password but still cannot sign in to the customer portal." },
+      { id:"HD-1033", subject:"Payment receipt missing", customer:"Riley M.", category:"Billing", priority:"Normal", status:"In progress", description:"The payment went through, but I have not received a receipt yet." },
+      { id:"HD-1032", subject:"Update delivery details", customer:"Alex P.", category:"Account update", priority:"Low", status:"Resolved", description:"Please update the delivery instructions on my recent order." },
+      { id:"HD-1031", subject:"Unable to upload a document", customer:"Sam T.", category:"Technical issue", priority:"Urgent", status:"Open", description:"The upload page keeps timing out when I submit my document." },
+      { id:"HD-1030", subject:"Question about a recent invoice", customer:"Robin D.", category:"Billing", priority:"Normal", status:"Open", description:"Could you explain one of the line items on my invoice?" }
+    ];
+    let tickets = seedTickets.map(ticket => ({ ...ticket }));
+    const rows = document.getElementById("ticketRows");
+    const statusFilter = document.getElementById("statusFilter");
+    const priorityFilter = document.getElementById("priorityFilter");
+    const search = document.getElementById("search");
+    const dialog = document.getElementById("ticketDialog");
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" })[character]);
+    const className = value => value.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "");
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const visible = tickets.filter(ticket =>
+        (statusFilter.value === "all" || ticket.status === statusFilter.value) &&
+        (priorityFilter.value === "all" || ticket.priority === priorityFilter.value) &&
+        `${ticket.id} ${ticket.subject} ${ticket.customer} ${ticket.category}`.toLowerCase().includes(query)
+      );
+      rows.innerHTML = visible.map(ticket => `<tr><td><span class="ticket-title">${escapeHtml(ticket.subject)}</span><span class="ticket-id">${escapeHtml(ticket.customer)} · ${escapeHtml(ticket.id)}</span></td><td><span class="badge ${className(ticket.priority)}">${escapeHtml(ticket.priority)}</span></td><td>${escapeHtml(ticket.category)}</td><td><span class="badge ${className(ticket.status)}">${escapeHtml(ticket.status)}</span></td><td>${escapeHtml(ticket.updated || "Today")}</td><td><button class="row-action" type="button" data-ticket="${escapeHtml(ticket.id)}">Review</button></td></tr>`).join("");
+      document.getElementById("emptyState").hidden = visible.length > 0;
+      document.getElementById("openCount").textContent = tickets.filter(ticket => ticket.status !== "Resolved").length;
+      document.getElementById("resolvedCount").textContent = tickets.filter(ticket => ticket.status === "Resolved").length;
+      document.getElementById("priorityCount").textContent = tickets.filter(ticket => ["Urgent", "High"].includes(ticket.priority) && ticket.status !== "Resolved").length;
+    }
+    function toast(message) {
+      const element = document.getElementById("toast");
+      element.textContent = message;
+      element.hidden = false;
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => { element.hidden = true; }, 2500);
+    }
+    function openTicket(id) {
+      const ticket = tickets.find(item => item.id === id);
+      if (!ticket) return;
+      document.getElementById("dialogTitle").textContent = `${ticket.id}: ${ticket.subject}`;
+      document.getElementById("dialogContent").innerHTML = `<dl class="details-list"><div><dt>Customer</dt><dd>${escapeHtml(ticket.customer)}</dd></div><div><dt>Category</dt><dd>${escapeHtml(ticket.category)}</dd></div><div><dt>Priority</dt><dd>${escapeHtml(ticket.priority)}</dd></div><div><dt>Current status</dt><dd>${escapeHtml(ticket.status)}</dd></div></dl><p>${escapeHtml(ticket.description)}</p><form class="form" id="ticketUpdateForm"><div class="field"><label for="ticketStatus">Update status</label><select id="ticketStatus" name="status"><option${ticket.status === "Open" ? " selected" : ""}>Open</option><option${ticket.status === "In progress" ? " selected" : ""}>In progress</option><option${ticket.status === "Resolved" ? " selected" : ""}>Resolved</option></select></div><div class="dialog-actions"><button class="button" type="submit">Save update</button></div></form><p class="form-note">Changes only affect this temporary browser demo.</p>`;
+      document.getElementById("ticketUpdateForm").addEventListener("submit", event => {
+        event.preventDefault();
+        ticket.status = new FormData(event.currentTarget).get("status").toString();
+        ticket.updated = "Just now";
+        dialog.close();
+        render();
+        toast(`${ticket.id} updated.`);
+      });
+      dialog.showModal();
+    }
+    function createTicket() {
+      document.getElementById("dialogTitle").textContent = "Create a sample ticket";
+      document.getElementById("dialogContent").innerHTML = `<form class="form" id="createTicketForm"><div class="field"><label for="customer">Customer name</label><input id="customer" name="customer" required maxlength="60" placeholder="e.g. Alex Kim"></div><div class="field"><label for="subject">What do they need help with?</label><input id="subject" name="subject" required maxlength="100" placeholder="Brief ticket title"></div><div class="field"><label for="category">Category</label><select id="category" name="category"><option>Account access</option><option>Billing</option><option>Technical issue</option><option>Account update</option><option>Other</option></select></div><div class="field"><label for="priority">Priority</label><select id="priority" name="priority"><option>Normal</option><option>Low</option><option>High</option><option>Urgent</option></select></div><div class="field"><label for="description">Description</label><textarea id="description" name="description" required maxlength="500" placeholder="Add a short description..."></textarea></div><button class="button" type="submit">Add sample ticket</button></form><p class="form-note">No email, alert or support request will be sent.</p>`;
+      document.getElementById("createTicketForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const values = new FormData(event.currentTarget);
+        const nextId = Math.max(1034, ...tickets.map(ticket => Number(ticket.id.slice(3)))) + 1;
+        tickets.unshift({ id:`HD-${nextId}`, customer:values.get("customer").toString().trim(), subject:values.get("subject").toString().trim(), category:values.get("category").toString(), priority:values.get("priority").toString(), description:values.get("description").toString().trim(), status:"Open", updated:"Just now" });
+        dialog.close();
+        statusFilter.value = "all";
+        priorityFilter.value = "all";
+        search.value = "";
+        render();
+        toast("Sample ticket created.");
+      });
+      dialog.showModal();
+    }
+    rows.addEventListener("click", event => { const button = event.target.closest("[data-ticket]"); if (button) openTicket(button.dataset.ticket); });
+    statusFilter.addEventListener("change", render);
+    priorityFilter.addEventListener("change", render);
+    search.addEventListener("input", render);
+    document.getElementById("newTicket").addEventListener("click", createTicket);
+    document.getElementById("newTicketNav").addEventListener("click", event => { event.preventDefault(); createTicket(); });
+    document.getElementById("resetDemo").addEventListener("click", () => { tickets = seedTickets.map(ticket => ({ ...ticket })); statusFilter.value = "all"; priorityFilter.value = "all"; search.value = ""; render(); toast("Demo inbox reset."); });
+    document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+    render();
+  </script>
+</body>
+</html>

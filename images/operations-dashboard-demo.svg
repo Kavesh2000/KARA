@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Operations dashboard concept preview</title>
+  <desc id="desc">Illustrated business operations dashboard with summary metrics, chart, and task list.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4f1ff"/><stop offset="1" stop-color="#e9f0ff"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#7651d6"/><stop offset="1" stop-color="#4f72d8"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" rx="28" fill="url(#bg)"/>
+  <rect x="38" y="34" width="884" height="532" rx="20" fill="#fff" stroke="#e5e3ec"/>
+  <path d="M58 34h190v532H58a20 20 0 0 1-20-20V54a20 20 0 0 1 20-20Z" fill="#211e2c"/>
+  <rect x="63" y="61" width="34" height="34" rx="10" fill="url(#accent)"/>
+  <path d="M73 69v18m0-9h9m-9 0 8-8m3 8 7 9" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.5"/>
+  <text x="108" y="84" fill="#fff" font-family="Arial,sans-serif" font-size="17" font-weight="700">KARA WORKSPACE</text>
+  <text x="65" y="135" fill="#8f8a9b" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">WORKSPACE</text>
+  <rect x="56" y="151" width="171" height="39" rx="10" fill="#353142"/>
+  <circle cx="76" cy="170" r="6" fill="#b9a6ff"/>
+  <text x="93" y="175" fill="#fff" font-family="Arial,sans-serif" font-size="13">Overview</text>
+  <g fill="#b6b1c1" font-family="Arial,sans-serif" font-size="13">
+    <circle cx="76" cy="215" r="5" fill="#777185"/><text x="93" y="220">Tasks &amp; projects</text>
+    <circle cx="76" cy="258" r="5" fill="#777185"/><text x="93" y="263">Team activity</text>
+    <circle cx="76" cy="301" r="5" fill="#777185"/><text x="93" y="306">Reports</text>
+    <circle cx="76" cy="344" r="5" fill="#777185"/><text x="93" y="349">Documents</text>
+  </g>
+  <text x="284" y="79" fill="#77747e" font-family="Arial,sans-serif" font-size="12">WORKSPACE  /  OVERVIEW</text>
+  <text x="284" y="119" fill="#211e2c" font-family="Arial,sans-serif" font-size="28" font-weight="700">Good morning, team.</text>
+  <text x="284" y="145" fill="#77747e" font-family="Arial,sans-serif" font-size="13">Here’s a clear view of work in progress.</text>
+  <rect x="284" y="169" width="188" height="92" rx="13" fill="#f3efff"/>
+  <rect x="487" y="169" width="188" height="92" rx="13" fill="#edf6f1"/>
+  <rect x="690" y="169" width="188" height="92" rx="13" fill="#fff4e3"/>
+  <g font-family="Arial,sans-serif">
+    <text x="302" y="195" fill="#77747e" font-size="12">Open tasks</text><text x="302" y="235" fill="#211e2c" font-size="27" font-weight="700">24</text><text x="346" y="233" fill="#7651d6" font-size="11">5 due today</text>
+    <text x="505" y="195" fill="#77747e" font-size="12">Completed</text><text x="505" y="235" fill="#211e2c" font-size="27" font-weight="700">18</text><text x="548" y="233" fill="#2c8a68" font-size="11">this week</text>
+    <text x="708" y="195" fill="#77747e" font-size="12">Team capacity</text><text x="708" y="235" fill="#211e2c" font-size="27" font-weight="700">82%</text><text x="764" y="233" fill="#b57921" font-size="11">on track</text>
+  </g>
+  <rect x="284" y="281" width="374" height="244" rx="14" fill="#fff" stroke="#eceaf0"/>
+  <text x="305" y="311" fill="#211e2c" font-family="Arial,sans-serif" font-size="14" font-weight="700">Weekly activity</text>
+  <text x="305" y="333" fill="#9995a1" font-family="Arial,sans-serif" font-size="11">Tasks completed</text>
+  <g stroke="#efedf2" stroke-width="1"><path d="M310 377h323M310 416h323M310 455h323M310 494h323"/></g>
+  <path d="M318 471 363 447 407 458 451 405 496 420 540 374 585 392 628 344" fill="none" stroke="url(#accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M318 471 363 447 407 458 451 405 496 420 540 374 585 392 628 344v150H318Z" fill="#7651d6" opacity=".08"/>
+  <rect x="676" y="281" width="202" height="244" rx="14" fill="#fff" stroke="#eceaf0"/>
+  <text x="696" y="311" fill="#211e2c" font-family="Arial,sans-serif" font-size="14" font-weight="700">Today’s priorities</text>
+  <g font-family="Arial,sans-serif">
+    <circle cx="701" cy="352" r="8" fill="#eee8fb"/><path d="m697 352 3 3 5-6" fill="none" stroke="#7651d6" stroke-width="1.8"/><text x="718" y="350" fill="#383542" font-size="11">Review new requests</text><text x="718" y="366" fill="#9995a1" font-size="10">Operations · 10:30</text>
+    <circle cx="701" cy="408" r="8" fill="#e8f4ed"/><path d="m697 408 3 3 5-6" fill="none" stroke="#2c8a68" stroke-width="1.8"/><text x="718" y="406" fill="#383542" font-size="11">Approve team schedule</text><text x="718" y="422" fill="#9995a1" font-size="10">People · 12:00</text>
+    <circle cx="701" cy="464" r="8" fill="#fff2dc"/><text x="718" y="462" fill="#383542" font-size="11">Prepare weekly update</text><text x="718" y="478" fill="#9995a1" font-size="10">Management · 15:00</text>
+  </g>
+  <text x="284" y="548" fill="#9995a1" font-family="Arial,sans-serif" font-size="10">CONCEPT PREVIEW · SAMPLE DATA</text>
+</svg>
